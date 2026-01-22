@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>엔티티</title>
+  </head>
+  <body>
+    <h1>HTML 문자 서식 앤티티</h1>
+    <p>less than(<)</p>
+    <h2></h2>
+    <p>&amp;lt; 코드는 &lt; 를 나타내는 태그입니다.</p>
+    <p>&amp;gt; 코드는 &gt; 를 나타내는 태그입니다.</p>
+    <p>&amp;gt; 코드는 &gt; 를 나타내는 태그입니다.</p>
+
+    <p>한 칸 공백 엔티티사용</p>
+
+<style>
+.terms-content .circle_list {
+    margin-top: 8px;
+    counter-reset: circle 0
+}
+
+.terms-content .circle_list.start_5 {
+    margin-top: 8px;
+    counter-reset: circle 4
+}
+
+.terms-content .circle_list > li {
+    position: relative;
+    list-style: none;
+    padding-left: 22px;
+    margin: 5px 0;
+    font-family: "NotoSans-Light";
+    word-break: keep-all;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.terms-content .circle_list > li::before {
+    position: absolute;
+    top: 11px;
+    left: 5.4px;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    will-change: transform;
+    counter-increment: circle 1;
+    content: counter(circle);
+    color: #444;
+    line-height: 14px;
+    font-size: 11px;
+    width: 14px;
+    height: 14px;
+    text-align: center;
+}
+
+.terms-content .circle_list > li::after {
+    position: absolute;
+    top: 12px;
+    left: 4px;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    display: inline-block;
+    content: '';
+    border: 1px solid #b56510;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    background: #8f310b4f;
+}
+</style>
+
+
+<div class="terms-content"> 
+ <ol class="circle_list">
+	
+                <li> - 리스트입니다.</li>
+                <li> - 리스트입니다.</li>
+                <li> - 리스트입니다.</li>
+                <li> - 리스트입니다.</li>
+                <li> - 리스트입니다.</li>
+                <li> - 리스트입니다.</li>
+                <li> - 리스트입니다.</li>
+                <li> - 리스트입니다.</li>
+
+</ol> 
+<hr>
+ <ol class="circle_list start_5" type="1" start="5">	
+    <li> - 리스트입니다.</li>
+    <li> - 리스트입니다.</li>
+    <li> - 리스트입니다.</li>
+    <li> - 리스트입니다.</li>
+    <li> - 리스트입니다.</li>
+    <li> - 리스트입니다.</li>
+    <li> - 리스트입니다.</li>
+    <li> - 리스트입니다.</li>
+
+</ol> 
+
+<ul style="list-style-type: space-counter;">
+    <li>제목입니다....</li>
+    <li>제목입니다....</li>
+    <li>제목입니다....</li>
+    <li>제목입니다....</li>
+    <li>제목입니다....</li>
+</ul>
+
+<ul>
+    <li>111</li>
+    <li>222
+        <ul>
+            <li>333</li>
+            <li>444
+                <ul>
+                    <li>555
+                        <ul>
+                            <li>666</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+</div>
+  </body>
+</html>

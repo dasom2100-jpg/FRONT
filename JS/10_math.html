@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내장함수</title>
+    <script>
+var num = 2.1254;
+// Math.round(), floor(), ceil() : 모두 정수를 반환함.
+var maxNum = Math.max(10, 5, 8, 30),
+    minNum = Math.min(10, 5, 8, 30),
+
+    roundNum = Math.round(num),
+    floorNum = Math.floor(num),
+    ceilNum = Math.ceil(num),
+
+// Math.random() : 0 ~ 1사이의 실수값 반환
+    rndNum = Math.floor(Math.random() * 10),
+    piNum = Math.PI,
+
+    absNum = Math.abs(-15),
+    powNum = Math.pow(5, 3),
+    sqrtNum = Math.sqrt(9);
+
+document.write("최대값 : ", maxNum, "<br>");
+document.write("최소값 : ", minNum, "<br><hr>");
+
+document.write("반올림 : ", roundNum, "<br>");
+document.write("반올림(소수점 둘째자리) : ", Math.round(num * 100) / 100, "<br>");
+
+// toFixed(소수점자리수) : 자리수는 0 ~ 100까지 가능,
+// 없는 자리수는 0이 자동으로 채워짐. ex) 2.1254;
+document.write("반올림(소수점 둘째자리) : ", num.toFixed(2), "<br><hr>");
+
+document.write("소수점 버림 : ", floorNum, "<br>");
+document.write("무조건 올림 : ", ceilNum, "<br><hr>");
+
+document.write("원주율 : ", piNum, "<br>");
+document.write("절대값 : ", absNum, "<br><hr>");
+
+document.write("거듭제곱(승수) : ", powNum, "<br>");
+document.write("제곱근(루트) : ", sqrtNum, "<br><hr>");
+
+document.write("랜덤값 : ", Math.random(), "<br>");
+document.write("랜덤값(0~9사이) : ", rndNum, "<br>");
+document.write("랜덤갑: ",Math.random(),"<br>");
+document.write("랜덤값(0~9tkdl :10개 숫자 중 1개) : ",rndNum, "<br>"); 
+</script>
+
+</head>
+<body>
+    
+</body>
+</html>

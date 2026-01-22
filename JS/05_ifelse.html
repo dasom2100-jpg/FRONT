@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="ko"><head>
+	<meta charset="UTF-8">
+	<title>조건문</title>
+</head>
+<body>
+	<h1>if 문</h1>
+	입력값 1 : <input type="number" class="inVal"><br>
+	입력값 2 : <input type="number" class="inVal"><br><hr>
+
+	<button type="button" onclick="comp()">결과값 보기</button><br><br>
+	<span id="result">결과값이 뭘까요?</span><br><br>
+
+	<script>
+		function comp(){
+		
+			// 입력값 1에 해당되는 input요소의 값을 가져오기
+			let x = document.getElementsByClassName('inVal')[0].value;
+			// 입력값 2에 해당되는 input요소의 값을 가져오기
+			let y = document.getElementsByClassName('inVal')[1].value;
+			
+			x = Number(x);
+			y = Number(y);
+
+			let resultStr;
+			// 실행될 실행문이 한 줄뿐이라면 {}(중괄호)를 생략할 수 있음.
+			if (x == y)  resultStr = "x와 y는 같습니다.";
+			if (x < y)  resultStr = "x가 y보다 작습니다.";
+			if (x > y)  resultStr = "x가 y보다 큽니다.";
+			console.log("resultStr1: ", resultStr); 
+
+			if (x == y) {
+				resultStr = "x와 y는 같습니다.";
+			} else { //if~else중첩문
+				if (x < y)
+					resultStr = "x가 y보다 작습니다.";
+				else 
+					resultStr = "x가 y보다 큽니다.";
+			}
+			console.log("resultStr2: ", resultStr); 
+
+			if (x == y) {
+				resultStr = "x와 y는 같습니다.";
+			}else if (x < y) {
+				resultStr = "x가 y보다 작습니다.";
+			}else { // x > y인 경우
+				resultStr = "x가 y보다 큽니다.";
+			}
+
+			document.getElementById('result').innerText = resultStr;
+		}
+		
+	</script>
+</body>
+</html>

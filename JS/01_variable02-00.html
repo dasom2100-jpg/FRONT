@@ -1,0 +1,25 @@
+<!DOCTYPE html><!-- 01_variabl02.html -->
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>변수 선언 및 사용</title>
+</head>
+<body>
+	<h2>var 변수 선언 및 사용 </h2>
+	<p>var키워드는 지역의 의미가 없다.(단 함수안에서는 제외)</p>
+	
+	<script>
+		//var키워드로 선언된 함수를 별도로 지역의 의미를 부여할 수 있는 경우는
+		//함수 안에 선언된 경우만 가능함.
+		var x = 10;
+		document.write("전역var1: " + x+"<br>");
+		{  
+			var x = 2222;
+			document.write("지역var: " + x+"<br>");
+		}
+		var x = "안녕하세요.";
+		document.write("전역var2: " + x + "<br>");
+	</script>
+</body>
+</html>

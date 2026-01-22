@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form요소</title>
+    <style>
+        form {border: 1px solid #000;padding: 5px;}
+    </style>
+</head>
+<body>
+    <h2>form 태그들</h2>
+
+    <form action="01form.html" method="get">
+
+        <lable for="firstname">First name:</lable>
+        <input type="text" id="firstname" name="first1"> 
+        
+        <br><br>
+
+        <h3> for/id 속성이 없음</h3>
+        <lable>Last name:
+            <input type="text" name="lastname"> 
+        </lable>
+        <br><br>
+
+        <lable for="mname">Middle name :</lable>
+        <input type="text" id="mname" name="middlename" value="중간">
+        <br><br>
+
+        <label for="job">job: </label>
+        <input type="text" id="job" value="학생">
+        <br><br>
+        <!-- <input type="submit" value="가입하기"> -->
+        <button type="submit">가입하기 </button>
+
+    </form>
+    <br>
+
+    <form action="">
+        <input type="text" name="two1" value="홍"><br>
+        <input type="text" name="two2" value="길동"><br>
+        <input type="text" name="two3" value="중간"><br>
+        <input type="text" name="job" value="학생"><br>
+        <button type="submit">가입하기</button>
+    </form>
+    <br>
+
+
+
+
+
+
+
+</body>
+</html>

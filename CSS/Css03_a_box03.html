@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>input types</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            vertical-align: bottom;
+        }
+
+        .subm1 {
+            display: block;
+            width: 150px;
+            height: 50px;
+            margin-top : 20px;
+        }
+
+        .subm {
+            background-color: #fff;
+            border: 1px solid #dedede;
+            cursor: pointer;
+            padding: 5px 10px 6px 7px;
+        }
+
+        /* .subm img {
+            border: 0;
+            padding: 0;
+            width: 16px;
+            height: 16px;
+        } */
+
+
+        .subm:hover {
+            background-color: #969793;
+            border: 1px solid #c6d880;
+            color: #529215;
+        }
+
+        .subm:active {
+            background-color: #ff0000;
+            border: 1px solid #f8b89b;
+            color: #ffffff;
+        }
+
+        #make_sbtn {
+            border-radius: 5px;
+            background-color: rgb(71, 182, 226);
+            border: none;
+            color: white;
+            font-size: 17px;
+            letter-spacing: 2px;
+            font-weight: bolder;
+        }
+
+        input[type=image] {
+            border-radius: 5px;
+        }
+
+        input#in2 {
+            display: none;
+        }
+
+        label[for=in2] {
+            width: 150px;
+            height: 50px;
+            display: inline-block;
+            padding: 10px;
+            text-align: center;
+            border: none;
+            border-radius: 3px;
+            background-color: rgb(63, 101, 237);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* label[for="in2"] {
+            display : block;
+            width: 100px;
+            height : 100px;
+            background-color: #f00;
+            color : #fff;
+            border : none;
+            border-radius : 50%;
+            cursor : pointer;
+            padding : 36px 20px;
+        } */
+
+        #fla:checked + div {background-color: red;}
+    </style>
+
+</head>
+
+<body>
+    <h2>input fields types</h2>
+    <!--
+    입력요소로 파일을 전송하기 위한 조건
+    1. 반드시 input type="file" 태그(=엘리먼트=요소)가 form태그 안에 존재해야 한다.
+    2. 반드시 input type="file" 태그에 name속성이 존재해야 한다.
+    3. form태그의 데이터전송방식(=method)이 POST여야함.
+    4. form태그에 enctype="multipart/form-data" 설정되어야 함.
+    -->
+    <form method="POST" enctype="multipart/form-data">
+        <label> 선택 
+            <input type="checkbox" style="display: none;" name="fla" id="fla" value="공부">
+            <div style="display: inline-block;width:30px;height:30px;border-radius: 50%;border:1px solid #000;padding:10px;"></div>
+        </label>
+
+        <label><input type="file" name="in1" ></label><br><br>
+
+        <label for="in2">파일선택</label>
+        <input type="file" name="in2" id="in2" multiple><br>
+
+        <button type="button" class="subm1" onclick="alert('일반버튼입니다.')">일반버튼</button>
+
+        <!--  다중클래스 형식  : class="클래스명1  클래스명2  클래스명3  ..." -->
+        <button type="submit" class="subm subm1">
+            <img src="./img/tick.png" alt="전송버튼"> 전송하기
+        </button>
+        <input type="image" class="subm1" src="./img/submit.png" alt="제출버튼" title="submit버튼을 이미지로">
+        <input type="submit" class="subm1" id="make_sbtn" value="submit">
+        <input type="reset" class="subm1" value="reset">
+        <input type="button" class="subm1" value="button">
+    </form><br><br>
+
+
+</body>
+
+</html>

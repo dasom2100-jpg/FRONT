@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body{padding: 8px;}
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    .viewBtn {display: flex; justify-content: center; align-items: center; gap: 10px;}
+    button {  width: 150px; height: 50px; border-radius: 10px; border: 1px solid #1e4fb7; background-color: #f0f4ff; cursor: pointer; transition: all 0.3s ease-in;}
+    button:hover {background-color: #d0e1ff; transform: translateY(-3px); border-color: #2a282b; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);}
+
+    button span { color: #1a181b; font-size: 22px; font-weight: 700; transition: all 0.3s ease-in; }
+
+    .viewBtn button:first-child,.viewBtn button:last-child {font-size: 30px; font-weight: 800; font-family: 'Lato', sans-serif;}
+
+    .fSViewer {width: 100%; border: 1px solid #000; padding: 20px; font-size: 16px; line-height: 1.5em; margin-top: 20px;    }
+.fSViewer>img {width: 100%; height: auto;}
+    </style>
+</head>
+<body>
+  
+    <div class="viewBtn">
+        <button onclick="btnclick('-')"><span>-</span></button> 
+        <button onclick="btnclick('100%')"> <span>100%</span> </button>
+        <button onclick="btnclick('+')"><span>+</span></button>
+    </div>
+    <p class="fSViewer">
+      <img src="../img/cute_dog.jpg" alt="" ">
+    </p>
+
+    <script>
+        let size = 100;
+        function btnclick(val){
+            switch(val){
+                case '-':
+                    if(size > 50){
+                        size -= 10;
+                    }else alert('최소 크기입니다.');
+                    break;
+                case '100%':
+                    size = 100;
+                    break;
+                case '+':
+                    if(size <= 200){
+                        size += 10;
+                    }else alert('최대 크기입니다.');
+                    break;
+            }
+            document.querySelector('.fSViewer').style.width = size  + '%';
+        }
+    </script>
+
+
+
+      <!-- <script>
+    let currentFontSize = 16;
+    const minFontSize = 10;
+    const maxFontSize = 28;
+    const fSViewer = document.querySelector('.fSViewer');
+    const buttons = document.querySelectorAll('.viewBtn button');
+
+    buttons[0].addEventListener('click', function() {
+        if(currentFontSize > minFontSize) {
+            currentFontSize -= 2;
+            fSViewer.style.fontSize = currentFontSize + 'px';
+            updatePercentage();
+        }
+    });
+
+    buttons[1].addEventListener('click', function() {
+        currentFontSize = 16;
+        fSViewer.style.fontSize = currentFontSize + 'px';
+        buttons[1].innerHTML = '<span>100%</span>';
+    });
+
+    buttons[2].addEventListener('click', function() {
+        if(currentFontSize < maxFontSize) {
+            currentFontSize += 2;
+            fSViewer.style.fontSize = currentFontSize + 'px';
+            updatePercentage();
+        }
+    });
+
+    function updatePercentage() {
+        const percentage = Math.round((currentFontSize / 16) * 100);
+        buttons[1].innerHTML = '<span>' + percentage + '%</span>';
+    }
+    </script> -->
+</body>
+</html>

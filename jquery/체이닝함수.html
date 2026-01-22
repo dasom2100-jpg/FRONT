@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>체이닝 함수 실용 예제</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            padding: 50px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .box {
+            background-color: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .highlight {
+            background-color: #ffeb3b !important;
+            transform: scale(1.05);
+        }
+
+        .active {
+            border-left: 5px solid #2196F3;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #2196F3;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background-color: #1976D2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>jQuery 스타일 체이닝 함수 예제</h1>
+        <br>
+
+        <!-- 버튼들 -->
+        <button class="btn" id="btn1">박스 스타일 변경</button>
+        <button class="btn" id="btn2">박스 하이라이트</button>
+        <button class="btn" id="btn3">텍스트 변경</button>
+        <button class="btn" id="btn4">리셋</button>
+
+        <br><br>
+
+        <!-- 박스들 -->
+        <div class="box">첫 번째 박스</div>
+        <div class="box">두 번째 박스</div>
+        <div class="box">세 번째 박스</div>
+    </div>
+
+    <script>
+        // ==========================================
+        // jQuery 스타일 체이닝 함수 구현
+        // ==========================================
+        function $(selector) {
+            const elements = document.querySelectorAll(selector);
+            
+            return {
+                // CSS 스타일 설정
+                css: function(property, value) {
+                    elements.forEach(el => {
+                        // 객체로 여러 속성을 받는 경우
+                        if (typeof property === 'object') {
+                            Object.keys(property).forEach(key => {
+                                // kebab-case를 camelCase로 변환
+                                const camelCase = key.replace(/-([a-z])/g, 
+                                    (g) => g[1].toUpperCase()
+                                );
+                                el.style[camelCase] = property[key];
+                            });
+                        } else {
+                            // 단일 속성을 받는 경우
+                            const camelCase = property.replace(/-([a-z])/g, 
+                                (g) => g[1].toUpperCase()
+                            );
+                            el.style[camelCase] = value;
+                        }
+                    });
+                    return this; // 체이닝을 위해 자신을 반환
+                },
+                
+                // 클래스 추가
+                addClass: function(className) {
+                    elements.forEach(el => el.classList.add(className));
+                    return this;
+                },
+                
+                // 클래스 제거
+                removeClass: function(className) {
+                    elements.forEach(el => el.classList.remove(className));
+                    return this;
+                },
+                
+                // 클래스 토글
+                toggleClass: function(className) {
+                    elements.forEach(el => el.classList.toggle(className));
+                    return this;
+                },
+                
+                // 텍스트 설정
+                text: function(text) {
+                    elements.forEach(el => el.textContent = text);
+                    return this;
+                },
+                
+                // HTML 설정
+                html: function(html) {
+                    elements.forEach(el => el.innerHTML = html);
+                    return this;
+                },
+                
+                // 클릭 이벤트
+                click: function(callback) {
+                    elements.forEach(el => {
+                        el.addEventListener('click', callback);
+                    });
+                    return this;
+                },
+                
+                // 속성 설정
+                attr: function(attribute, value) {
+                    elements.forEach(el => {
+                        el.setAttribute(attribute, value);
+                    });
+                    return this;
+                },
+
+                // 각 요소에 대해 반복 실행
+                each: function(callback) {
+                    elements.forEach((el, index) => {
+                        callback.call(el, index, el);
+                    });
+                    return this;
+                }
+            };
+        }
+
+        // ==========================================
+        // 버튼 이벤트 설정
+        // ==========================================
+        
+        // 버튼 1: 박스 스타일 변경
+        document.getElementById('btn1').addEventListener('click', function() {
+            $('.box')
+                .css('background-color', 'lightblue')
+                .css('border', '3px solid #2196F3')
+                .css('padding', '30px')
+                .text('스타일이 변경되었습니다!');
+        });
+
+        // 버튼 2: 박스 하이라이트 (토글)
+        document.getElementById('btn2').addEventListener('click', function() {
+            $('.box')
+                .toggleClass('highlight')
+                .toggleClass('active');
+        });
+
+        // 버튼 3: 텍스트 변경 (각 박스마다 다른 텍스트)
+        document.getElementById('btn3').addEventListener('click', function() {
+            const boxes = document.querySelectorAll('.box');
+            boxes.forEach((box, index) => {
+                box.textContent = `박스 ${index + 1} - 새로운 내용`;
+                box.style.fontSize = '18px';
+                box.style.fontWeight = 'bold';
+                box.style.color = '#2196F3';
+            });
+        });
+
+        // 버튼 4: 리셋
+        document.getElementById('btn4').addEventListener('click', function() {
+            $('.box')
+                .removeClass('highlight')
+                .removeClass('active')
+                .css({
+                    'background-color': 'white',
+                    'border': 'none',
+                    'padding': '20px',
+                    'font-size': '16px',
+                    'font-weight': 'normal',
+                    'color': 'black'
+                });
+                
+            // 원래 텍스트로 복원
+            const boxes = document.querySelectorAll('.box');
+            boxes.forEach((box, index) => {
+                box.textContent = ['첫 번째 박스', '두 번째 박스', '세 번째 박스'][index];
+            });
+        });
+
+        // ==========================================
+        // 추가 예제: 페이지 로드 시 초기 애니메이션
+        // ==========================================
+        
+        // 페이지 로드 시 박스들이 순차적으로 나타남
+        window.addEventListener('load', function() {
+            const boxes = document.querySelectorAll('.box');
+            
+            boxes.forEach((box, index) => {
+                box.style.opacity = '0';
+                box.style.transform = 'translateY(-20px)';
+                
+                setTimeout(() => {
+                    box.style.transition = 'all 0.5s ease';
+                    box.style.opacity = '1';
+                    box.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+
+        // 박스에 호버 효과 추가
+        document.querySelectorAll('.box').forEach(box => {
+            box.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(10px)';
+                this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+            });
+            
+            box.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('highlight')) {
+                    this.style.transform = 'translateX(0)';
+                    this.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

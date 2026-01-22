@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 핸들러 함수 종류</title>
+    <script>
+    /*
+    addEventListener : document의 특정요소들에  event를 등록할 때 사용하는 함수임.
+    addEventListener()함수를 이용한 이벤트 연결 형식:
+    연결할요소또는객체.addEventListener(
+    "이벤트명", function(){ 실행코드들.. ; } [, 이벤트전파방식선택- true | false(기본값) ]);
+    이벤트전파방식 :
+    기본값(false) - 버블링방식
+    true - 캡처링방식
+    
+    **콜백함수 형식: 익명함수와 동일
+    function(){
+        실행할 코드들..;
+    }
+    */
+    
+    window.onload = function () {
+        var cols = document.getElementsByClassName("btn");
+        for (var i = 0; i < cols.length; i++) {
+            cols[i].addEventListener("click", clk);
+        }
+        cols[2].style.color = "red";
+    };
+    
+    function clk(e) {
+        console.log('event: ', event);
+        // window.alert(this.innerText);
+        window.alert(event.target.innerText);
+    }
+</script>
+</head>
+<body>
+    <div id="cols">
+        <button class="btn">A</button>
+        <button class="btn">B</button>
+        <button class="btn">C</button>
+    </div>
+    <br><br>
+    <button type="button" id="btn">클릭</button>
+    <button type="button" id="btn1" onclick="clk()">클릭</button>
+
+<script>
+    document.getElementById('btn').addEventListener('mouseover', function () {
+        this.style.color = "red";
+    });
+    document.getElementById('btn').addEventListener('mouseout', function () {
+        this.style.color = "#000";
+    });
+    document.getElementById('btn').onclick = function (e) {
+        console.log('e: ', e);
+        alert(e.target.innerText);
+    };
+</script>
+
+    
+</body>
+</html>

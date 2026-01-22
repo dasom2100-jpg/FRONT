@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>제목</title>
+	<script>
+		var today = new Date(); // Date 자료형의 객체 생성
+		document.write('today1: ', today + "<br>");
+
+		var today2 = Date(); // 현재 날짜 시간 정보의 값을 문자열값으로 반환
+		document.write('today2: ', today2 + "<br><hr>");
+
+		document.write(typeof today, '<br>');
+		document.write(typeof today2, '<br><hr>');
+
+		let a = 5;
+		document.write(typeof a, '<br>');
+		let b = Number(5);
+		document.write(typeof b, '<br>');
+		let c = new Number(5);
+		document.write(typeof c, '<br><hr>');
+		// getMonth() : 0~11까지 (원래의 달 수보다 1이 작게 리턴됨.)
+		var mon = today.getMonth() + 1;
+
+		// String[] week = {"일", "월", "화", "수", "목", "금", "토"};
+		// 자바스크립트의 배열객체: 
+		/*
+		형식 : [값, 값, ... ]
+		- 자료형이 달라도 같이 묶을 수 있다.
+		- 가변형 공간이다.
+		- 순서가 존재함(인덱스존재 = 0부터 시작)
+		*/
+		var week = ["일", "월", "화", "수", "목", "금", "토"];
+
+		// getDay : 0(일요일)~6(토요일)까지 가져오는 함수
+		var day = week[today.getDay()];
+
+		document.write(today.getFullYear() + "년 " + mon + "월 "
+			+ today.getDate() + "일 " + day + "요일<br><br>");
+
+
+		// 해당 Locale을 인식하여 언어에 맞게 표시됨
+		document.write('today1: ', today.toLocaleString() + "<br>");
+		document.write('today1: ', today.toLocaleDateString() + "<br>");
+		document.write('today1: ', today.toLocaleTimeString() + "<br>");
+	</script>
+</head>
+
+<body></body>
+
+</html>

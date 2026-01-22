@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>가상클래스(:) 선택자-기타 선택자</title>
+  <style>
+    
+    /* * {color: #3c00ff;} */
+    /* p { color: #FF0000; }  */
+   
+    /* 선택한 엘리먼트가 아닌 모든 요소들의 글자 색상 */
+    /* :not(p) {
+      color: #ff0000;
+      border: 1px solid #000;
+    } */
+    
+    body > :not(#pid) { 
+      color: #ff0000; 
+      border : 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <p>This is a paragraph.</p>
+  <p id="pid">This is another paragraph.</p>
+  <h1>This is a heading</h1>
+  <div>This is some text in a div element.</div>
+  <a href="https://www.naver.com" target="_blank">Link to Naver!</a>
+
+</body>
+
+</html>

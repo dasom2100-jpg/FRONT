@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>switch조건문</title>
+<script>
+	function contR(){
+		// getElementsByClassName은 배열을 반환하므로 [0] 인덱스 필요
+		let str = document.getElementsByClassName('cont')[0].value;
+		
+		if(!str){
+			document.getElementById('empty').innerHTML="<p style='color:red'> 입력값이 비었습니다. 다시 입력해주세요 </p>";
+		}
+
+		let resultStr;
+		
+		switch (str) {
+			case '1' : 
+			case '한국' : 
+				resultStr = "한국"; 
+				break;
+			case '2' : 
+			case '미국' : 
+				resultStr = "미국"; 
+				break;
+			case '3' : 
+			case '일본' : 
+				resultStr = "일본"; 
+				break;
+			case '4' : 
+			case '중국' : 
+				resultStr = "중국"; 
+				break;
+			default : 
+				resultStr = "기타";
+		}
+		
+	
+		document.getElementsByClassName('result')[0].innerText = resultStr;
+	}
+</script>
+</head>
+
+<body>
+	<p>국가선택? 1. 한국 2. 미국 3. 일본 4. 중국</p>
+	<input type="search" class="cont" placeholder="1 혹은 한국으로 입력"> <br>
+	<a href="javaScript:contR()"  class="result">선택결과는?</a><br>
+	<span id="empty" > 결과 출력 </span>
+</body>
+</html>

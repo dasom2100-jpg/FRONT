@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ 
+</head>
+<body>
+    
+    <div id="gallery">
+      
+    <img src="../img/cellphone.jpg" onclick="showBig(this)">
+
+    <img src="../img/automobile.svg" onclick="showBig(this)">
+    <img src="../img/coffeehouse2.jpg" onclick="showBig(this)">
+</div>
+<div id="bigView"></div>
+
+<script>
+function showBig(img) {
+    const bigView = document.getElementById("bigView");
+    bigView.innerHTML = `<img src="${img.src}" style="width:500px;">`;
+}
+</script>
+</body>
+</html>

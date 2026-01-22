@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* 
+ * Minimal, accessible-friendly reset
+ * - box-sizing border-box for predictable sizing
+ * - remove default margin/padding
+ * - inherit font settings
+ * - normalize form controls and media
+ */
+
+/* sizing & spacing */
+*,
+*::before,
+*::after { box-sizing: border-box; } 
+
+html { line-height: 1.15; /* improved default */
+ -webkit-text-size-adjust: 100%; } 
+
+body { margin: 0; font-family: inherit; color: inherit; background-color: #fff; } 
+
+/* typography */
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, figure, figcaption, dl, dd { margin: 0; } 
+ul, ol { margin: 0; padding: 0; list-style: none; } 
+/* links */
+a { background-color: transparent; color: inherit; text-decoration: none; } 
+a:focus { outline: 2px solid currentColor; outline-offset: 2px; } 
+
+/* media */
+img, picture, video, canvas, svg { display: block; max-width: 100%; height: auto; } 
+
+/* forms */
+button, input, optgroup, select, textarea { font: inherit; color: inherit; margin: 0; background: transparent; border: none; } 
+button, input { overflow: visible; } 
+button, select { text-transform: none; } 
+button { cursor: pointer; } 
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled { cursor: not-allowed; } 
+
+textarea { resize: vertical; } 
+
+label { cursor: pointer; } 
+
+/* tables */
+table { border-collapse: collapse; border-spacing: 0; width: 100%; } 
+th, td { padding: 0; text-align: inherit; font-weight: inherit; } 
+
+/* misc */
+hr { border: 0; border-top: 1px solid currentColor; margin: 0; } 
+
+abbr[title] { text-decoration: underline dotted; } 

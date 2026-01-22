@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="css/Css03_b_display02.css">
+  <style>
+    /* @import url("css/Css03_b_display02.css"); */
+  </style>
+</head>
+
+<body>
+
+  <div id="imgHidden">
+    <h1>visibility: hidden; 속성 = 영역 유지</h1>
+    <img src="./img/img_forest.jpg" alt="체크박스이미지" title="체크박스이미지">
+    <img src="./img/img_forest.jpg" alt="체크박스이미지" title="체크박스이미지">
+  </div><br>
+
+  <div id="imgNone">
+    <h1>display: none; 속성 = 영역 없앰</h1>
+    <img src="./img/img_forest.jpg" alt="체크박스이미지" title="체크박스이미지">
+    <img src="./img/img_forest.jpg" alt="체크박스이미지" title="체크박스이미지">
+  </div>
+
+  <div id="lastDiv">마지막 영역입니다.</div>
+
+  <style>
+    #span1, #span2 {
+      display: inline-block;
+      padding: 10px 20px;
+      border: 1px solid #777;
+      border-radius : 5px;
+    }
+    #span1:hover, #span2:hover{
+      background-color : red;
+      color : #fff;
+    }
+    #paDiv{
+      width: 300px;
+      height : 300px;
+      background-color: aquamarine;
+    }
+    #div1, #div2{
+      width : 100%;
+      height : 100%;
+      display : none;
+      padding : 10px;
+    }
+
+    #span1:hover ~ #paDiv >#div1{
+      display: block;
+      background: blue;
+      color : #fff;
+    }
+    
+    #span2:hover ~ #paDiv >#div2{
+      display: block;
+      background: red;
+      color: #fff;
+    }
+  </style>
+  <br><br><br><br>  
+  <span id="span1">메뉴1</span><span id="span2">메뉴2</span>
+
+  <div id="paDiv">
+    <div id="div1">컨텐츠 내용1번</div>
+    <div id="div2">컨텐츠 내용2번</div>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+
+</html>

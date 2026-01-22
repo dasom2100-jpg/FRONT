@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트핸들러함수 강제 실행</title>
+    <script>
+        var chk = true;
+        window.onload = function () {
+            document.getElementById('frm').onsubmit = function(e){
+                console.log('e.target: ', e.target);
+
+                let tg = e.target;
+                
+                if(tg.uid.value == null || tg.uid.value == ''){
+                    alert('아이디를 입력해주세요.');
+                    tg.uid.focus();
+                    return false;
+                }
+                if(tg.upwd.value == null || tg.upwd.value == ''){
+                    alert('비밀번호를 입력해주세요.');
+                    tg.upwd.focus();
+                    return false;
+                }
+
+                return true;
+            };
+
+            document.getElementById("btn").onclick = function(){
+                document.getElementById("sel").onchange();
+            };
+
+            document.getElementById("sel").onchange = function(e){
+                console.log('e.target.value: ', e.target.value);
+                console.log('this.value: ', this.value);
+                document.getElementById("selstr").value = e.target.value;                
+                document.getElementById("selstr").value = this.value;
+            };
+        };
+    </script>
+</head>
+<body>
+    <form id="frm">
+        <input type="text" name="uid" id="uid" placeholder="아이디입력"><br>
+        <input type="password" name="upwd" id="upwd" placeholder="비번입력"><br>
+        <label><input type="text" name="selstr" id="selstr"></label><br>
+        선택옵션 : <br>
+        <select id="sel" name="sel">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select><br>
+        <br><br>
+        
+        <button type="button" id="btn">옵션강제변경</button>
+        <button type="submit">로그인</button>
+    </form>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+</body></html>

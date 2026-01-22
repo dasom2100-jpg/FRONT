@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8">
+	<title>setInterval, clearInterval</title>
+</head><body>
+	<input type="text" id="autoNum" placeholder="인증번호입력(12345)" disabled>
+	<button type="button" id="authBtn" onclick="startTimer()">인증번호 전송</button>
+	<span id="demo"></span>
+
+	<script>
+	var myVar, m, s;
+	
+	function startTimer(){
+		m = 0;
+		s = 10;
+		document.getElementById('autoNum').value = '';
+		document.getElementById('autoNum').disabled = false;
+
+		document.getElementById('authBtn').innerText = '인증번호 확인';
+		document.getElementById('authBtn').onclick = stopTimer;
+
+		myTimer(); // 첫 화면 출력
+		myVar = setInterval(myTimer, 1000);
+	}
+
+	function stopTimer(){
+		if(document.getElementById('autoNum').value == ''){
+			alert('인증번호가 입력되지 않았습니다.');
+			return;
+		}
+		
+		if(document.getElementById('autoNum').value == '12345'){
+			alert('인증완료되었습니다.');
+			stopTimerSub();
+			document.getElementById("demo").innerHTML = '';
+		}else{
+			alert('인증번호가 일치하지 않습니다.');
+		}
+	}
+
+	function stopTimerSub(){
+		clearInterval(myVar);
+		document.getElementById('autoNum').setAttribute('disabled', true);
+		document.getElementById('authBtn').innerText = '인증번호 전송';
+		document.getElementById('authBtn').setAttribute('onclick','startTimer()');
+	}
+
+	function myTimer() { 
+		if(m<4 && m>0) {
+			document.getElementById("demo").innerHTML = `0${m}:0${s}`;
+			m--;
+			s = 59;
+			return;
+		}
+		
+		if(m < 1 && m > 0){
+			if(s >= 10) {
+				document.getElementById("demo").innerHTML = `0${m}:${s}`;
+				s--;
+				return;
+			}else{
+				if(s > 0) { 
+					document.getElementById("demo").innerHTML = `0${m}:0${s}`;
+					s--;
+					return;
+				}else{ 
+					document.getElementById("demo").innerHTML = `0${m}:0${s}`;
+					m--;
+					s = 59;
+					return;
+				}
+			}
+		}
+		
+		if(m == 0){
+			if(s >= 10){
+				document.getElementById("demo").innerHTML = `0${m}:${s}`;
+				s--;
+				return;
+			}else{ 
+				if(s != 0) {
+					document.getElementById("demo").innerHTML = `0${m}:0${s}`;
+					s--;
+					return;
+				}else{ 
+					stopTimerSub();
+					document.getElementById("demo").innerHTML = `0${m}:0${s}`;
+					return;
+				}
+			}
+		}
+	}
+	</script>
+</body></html>

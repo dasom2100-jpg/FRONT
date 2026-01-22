@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>체크박스 전체 동의</title>
+</head>
+<body>
+    
+    <div class="wrapper">
+        <form action="" name="myForm">
+            <div>
+                <label>
+                    전체동의
+                    <input type="checkbox" name="all" class="all">
+                </label>
+            </div>
+            <div>
+                <label>
+                    서비스 이용약관 동의
+                    <input type="checkbox" name="term1" class="term">
+                </label>
+            </div>
+            <div>
+                <label>
+                    광고 수신 동의
+                    <input type="checkbox" name="term2" class="term">
+                </label>
+            </div>
+            <div>
+                <label>
+                    개인 정보 이용약관 동의
+                    <input type="checkbox" name="term3" class="term">
+                </label>
+            </div>
+        </form>
+    </div>
+</body>
+
+<!--  전체 동의를 완성하라 -->
+
+<script>
+
+    // checkbox 가져온다. 1개, 3개 - clear
+    // 이벤트 추가한다. 1개(all) , 3개(terms)
+    // 반복문 돌린다.
+    // 체크 상태 확인한다.
+    // 다 체크되면 전체동의 클릭하게 만들면 된다.
+
+    const all =  document.querySelector("input.all")
+    const terms = document.querySelectorAll("input.term")
+    NodeList.prototype.map = Array.prototype.map;
+
+    all.addEventListener("click", ()=>{
+        terms.forEach((term)=>{
+            term.checked = all.checked;
+        })
+    })
+    
+    terms.forEach((term)=>{
+        term.addEventListener("click", ()=>{
+            all.checked = terms.map((term) => term.checked ).filter((checked) => checked ).length === terms.length
+        })
+    })
+
+</script>
+</html>

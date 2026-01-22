@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>screen</title>
+	<style>
+		body { margin: 0; padding: 20px; }
+
+		div#divBox{
+			width : 300px;
+			height : 300px;
+			padding : 20px;
+			margin : 10px;
+			line-height: 300px;
+			border : 1px solid #000;
+			background-color: aquamarine;
+			text-decoration: underline;
+			text-align: center;
+			cursor: pointer;
+		}
+		h2 {margin-bottom: 10px;}
+		p#textBox {font-size: 1.5em;}
+	</style>
+</head>
+
+<body>
+	<button type="button" onclick="window.close()">브라우저 닫기</button>
+	<div id="divBox" onclick="size()">div박스 크기 확인하기</div>
+	<!-- <div id="divBox" onclick="size()" style="width: 300px;height: 300px;padding: 20px; border: 1px solid #000;margin : 10px;">div박스 크기 확인하기</div> -->
+	<br><hr><br>
+	<p id="textBox"></p>
+	<script>
+		function size() {
+			let tDiv = document.getElementById('divBox');
+			let txt = "<h1>divBox요소의 정보</h1>";
+
+			//style내장 객체는 반드시 inline stylesheet로 기술한 경우의 값만을 가져올 수 있다.
+			// txt += `divBox의 width : ${tDiv.style.width}, height : ${tDiv.style.height}<br>`;
+			// txt += `divBox의 padding(4방향모두) : ${tDiv.style.padding}<br>`;
+			// txt += `divBox의 border-width(4방향모두) : ${tDiv.style.borderWidth}<br><hr><br>`;
+
+			//getComputedStyle(태그객체명);
+			console.log('style: ', tDiv.style);
+			console.log('내부스타일속성 포함: ' ,getComputedStyle(tDiv));
+			txt += `divBox의 width : ${getComputedStyle(tDiv).width}, height : ${getComputedStyle(tDiv).height}<br>`;
+			txt += `divBox의 padding(4방향모두) : ${getComputedStyle(tDiv).padding}<br>`;
+			txt += `divBox의 border-width(4방향모두) : ${getComputedStyle(tDiv).borderWidth}<br><hr><br>`;
+
+			//clientWidth = 해당 요소의 width + padding, clientHeight = 해당 요소의 height + padding 값(border미포함)
+			txt += `<h2>clientWidth : width + padding<br>clientHeight : height + padding 값(border미포함)</h2>`;
+			txt += `divBox의 clientWidth: ${tDiv.clientWidth}, clientHeight: ${tDiv.clientHeight}<br>`;
+			
+			//offsetWidth = 해당 요소의 width + padding + border, offsetHeight = 해당 요소의 height + padding + border 값(border포함)
+			txt += `<h2>offsetWidth : width + padding + border<br>offsetHeight : height + padding + border 값(border포함)</h2>`;
+			txt += `divBox의 offsetWidth: ${tDiv.offsetWidth}, offsetHeight: ${tDiv.offsetHeight}`;
+			document.getElementById('textBox').innerHTML = txt;
+		}
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>check박스 체크 여부 확인하기</title>
+    <script>
+    function CheckForm() {
+        //체이박스(정확하게는 선택자)를 이용하여 여러개의 속성을 나열하는 방법
+        //체크박스 체크여부 확인
+        //checked :
+        //폼컨져에만 있는 경우 : 체크여부를 설정 (true => 체크, false =>해제)
+        //왼쪽터에만 있는 경우 : 체크된 여부를 판별 (true: 체크보상태, false : 해제된 상태)
+        
+        var chk1 = document.frmJoin.U_checkAgreement1.checked;
+        var chk2 = document.frmJoin.U_checkAgreement2.checked;
+        if (!chk1) {
+            alert("약관1에 동의해 주세요");
+            return false;
+        }
+        if (!chk2) {
+            alert("약관2에 동의해 주세요");
+            return false;
+        }
+var isSeasonChk = false;
+        var arr_Season = document.getElementsByName("SEASON");
+        
+        //체크박스 체크여부 확인 [동일 이름을 가진 체크박스 여러개일 경우]
+        for (var i = 0; i < arr_Season.length; i++) {
+            if (arr_Season[i].checked == true) {
+                isSeasonChk = true;
+                break;
+            }
+        }
+        if (!isSeasonChk) {
+            alert("계절의 종류를 한 개 이상 선택해주세요.");
+            return false;
+        }
+        return true;
+    }
+</script>
+</head>
+
+<body>
+    <form name="frmJoin" onsubmit="return CheckForm()">
+    <label>
+        <input type="checkbox" name="U_checkAgreement1" id="U_checkAgreement1"> 약관동의
+    </label>
+    <label>
+        <input type="checkbox" name="U_checkAgreement2" id="U_checkAgreement2"> 약관동의
+    </label><br><br>
+    
+    <label>
+        <input type="checkbox" id="spring" name="SEASON" value="1">봄
+    </label>
+    <label>
+        <input type="checkbox" id="summer" name="SEASON" value="2">여름
+    </label>
+    <label>
+        <input type="checkbox" id="fall" name="SEASON" value="3">가을
+    </label>
+    <label>
+        <input type="checkbox" id="winter" name="SEASON" value="4">겨울
+    </label><br><br>
+    <input type="submit" value="전송">
+</form><br><br>
+
+<div id="pBox">
+    <div id="cpText">쿠폰</div>
+    <div id="sh1"> sh1</div>
+    <div id="shMiddle">shMiddle </div>
+    <div id="sh2"> sh2</div>
+</div>
+<script>
+    document.getElementById('pBox').onclick = function() {
+        alert('쿠폰함 열기');
+    };
+</script>
+
+
+
+
+</body>
+</html>

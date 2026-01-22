@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    /*
+    클래스 만들기
+    java의 클래스처럼 변수, 함수, 생성자를 묶어놓은 집합체임.
+    클래스 안에 선언되는 변수나 함수에는 var, let, const, function등의 키워드를 사용할 수 없다.
+    생성시나 함수 안에 this 키워드를 사용할 수 있다.
+    
+    형식:
+    class 클래스명{
+        //클래스변수(static) 선언
+        static 변수명 = '초기값';
+        변수명 = '초기값';
+        
+        //생성자는 1개만 선언 가능하다.
+        constructor([매개변수, ...]){
+            //멤버변수 선언 및 초기화
+            this.변수명 = 값;
+            ...
+        }
+        
+        //static 메소드 선언
+        static 메소드명([매개변수, ...]) {
+            실행코드들;
+            ...
+        }
+        //멤버메소드 선언
+        메소드명([매개변수, ...]) {
+            실행코드들;
+            ... 
+        }
+    }
+    */  
+    class Shape{
+        //클래스(static)변수 선언-객체를 통한 접근 불가
+        static name = 'static name변수';
+
+        //객체변수(멤버변수) 선언
+        shapeName = '멤버변수 name';
+
+        //생성자 Shape(3,7)
+        constructor(width, height){
+            //객체변수(멤버변수) 선언
+            //만들어지는 객체에 따라 this가 인식하는 대상이 달라짐
+            
+            this.move(width, height);
+            console.log(`constructor내부 this: `, this); 
+            console.log(`constructor내부 this.shapeName: ${this.shapeName}`);
+        }
+        
+        //클래스(static) 메소드 - 객체를 동반 접근 불가
+        static create(x, y) {
+            return x * y;
+        }
+        
+        move(x, y){
+            this.x = x;
+            this.y = y;
+        }
+        
+        area(){ 
+            return 50; 
+        }
+    }   
+
+    // Shape.prototype.area = function(){ return 50; };
+    var s = new Shape(3, 7);
+    console.log('s: ', s);
+    console.log('s.area(): ', s.area());
+    console.log('Shape: ', Shape);
+    console.log(`s.shapeName : ${s.shapeName}`); 
+    console.log(`Shape.name : ${Shape.name}`);
+    console.log('====================================================');
+    
+    // console.log(`s.x : ${s.x}`);
+    // console.log(`s.y : ${s.y}`);
+    // console.log('====================================================');
+    
+    s.shapeName = '변경한 값으로 설정';
+    console.log(`s.shapeName : ${s.shapeName}`); //객체를 통해 멤버변수 생성(추가) 및 초기화가 가능하다.
+    console.log(`Shape.name : ${Shape.name}`);
+    console.log('====================================================');
+    
+    console.log(`Shape.create(2,5): ${Shape.create(2,5)}`);
+    
+    // s.create(2,5)는 에러가 발생하므로 try-catch로 처리
+    try {
+        console.log(`s.create(2,5): ${s.create(2,5)}`);
+    } catch(e) {
+        console.log('❌ 에러: s.create는 함수가 아닙니다. Static 메소드는 클래스명으로만 호출 가능!');
+    }
+    console.log('====================================================');
+    </script>
+</head>
+<body>
+    <h1>콘솔을 확인하세요 (F12)</h1>
+</body>
+</html>

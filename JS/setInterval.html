@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Date.now() 활용 예제</title>
+<style>
+    .timer { font-size: 24px; font-weight: bold; }
+    .info { margin: 10px 0; padding: 10px; background: #f0f0f0; }
+</style>
+</head>
+<body>
+    <h2>Date.now() 실습</h2>
+    
+    <!-- 현재 타임스탬프 -->
+    <div class="info">
+        <h3>현재 타임스탬프</h3>
+        <p id="timestamp"></p>
+        <button onclick="updateTimestamp()">갱신</button>
+    </div>
+    
+    <!-- 스톱워치 -->
+    <div class="info">
+        <h3>스톱워치</h3>
+        <div class="timer" id="stopwatch">00:00:00</div>
+        <button onclick="startStopwatch()">시작</button>
+        <button onclick="stopStopwatch()">정지</button>
+        <button onclick="resetStopwatch()">리셋</button>
+    </div>
+    
+    <!-- D-Day 계산 -->
+    <div class="info">
+        <h3>D-Day 계산기</h3>
+        <input type="date" id="targetDate">
+        <button onclick="calculateDday()">계산</button>
+        <p id="ddayResult"></p>
+    </div>
+    
+    <!-- 작업 시간 측정 -->
+    <div class="info">
+        <h3>작업 시간 측정</h3>
+        <button onclick="measurePerformance()">무거운 작업 실행</button>
+        <p id="performanceResult"></p>
+    </div>
+
+<script>
+    // 1. 타임스탬프 표시
+    function updateTimestamp() {
+        var now = Date.now();
+        var date = new Date(now);
+        document.getElementById("timestamp").innerHTML = 
+            "밀리초: " + now + "<br>" +
+            "날짜: " + date.toLocaleString('ko-KR');
+    }
+    updateTimestamp();
+    
+    // 2. 스톱워치
+    var stopwatchStart = null;
+    var stopwatchInterval = null;
+    var elapsedTime = 0;
+    
+    function startStopwatch() {
+        if(stopwatchStart === null) {
+            stopwatchStart = Date.now() - elapsedTime;
+            stopwatchInterval = setInterval(updateStopwatch, 10);
+        }
+    }
+    
+    function updateStopwatch() {
+        var now = Date.now();
+        elapsedTime = now - stopwatchStart;
+        
+        var ms = Math.floor((elapsedTime % 1000) / 10);
+        var seconds = Math.floor((elapsedTime / 1000) % 60);
+        var minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
+        var hours = Math.floor(elapsedTime / (1000 * 60 * 60));
+        
+        var display = 
+            String(hours).padStart(2, '0') + ":" +
+            String(minutes).padStart(2, '0') + ":" +
+            String(seconds).padStart(2, '0') + "." +
+            String(ms).padStart(2, '0');
+        
+        document.getElementById("stopwatch").textContent = display;
+    }
+    
+    function stopStopwatch() {
+        if(stopwatchInterval) {
+            clearInterval(stopwatchInterval);
+            stopwatchInterval = null;
+            stopwatchStart = null;
+        }
+    }
+    
+    function resetStopwatch() {
+        stopStopwatch();
+        elapsedTime = 0;
+        document.getElementById("stopwatch").textContent = "00:00:00.00";
+    }
+    
+    // 3. D-Day 계산
+    function calculateDday() {
+        var targetInput = document.getElementById("targetDate").value;
+        if(!targetInput) {
+            alert("날짜를 선택하세요");
+            return;
+        }
+        
+        var target = new Date(targetInput).getTime();
+        var now = Date.now();
+        var diff = target - now;
+        var days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+        
+        var result = "";
+        if(days > 0) {
+            result = "D-" + days + " (앞으로 " + days + "일 남음)";
+        } else if(days === 0) {
+            result = "D-Day! (오늘입니다)";
+        } else {
+            result = "D+" + Math.abs(days) + " (" + Math.abs(days) + "일 지남)";
+        }
+        
+        document.getElementById("ddayResult").textContent = result;
+    }
+    
+    // 4. 성능 측정
+    function measurePerformance() {
+        var start = Date.now();
+        
+        // 무거운 작업 시뮬레이션
+        var sum = 0;
+        for(var i = 0; i < 10000000; i++) {
+            sum += Math.sqrt(i);
+        }
+        
+        var end = Date.now();
+        var duration = end - start;
+        
+        document.getElementById("performanceResult").innerHTML = 
+            "작업 완료!<br>" +
+            "실행 시간: " + duration + "ms<br>" +
+            "결과: " + sum.toFixed(2);
+    }
+</script>
+</body>
+</html>

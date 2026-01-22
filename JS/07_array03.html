@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Array</title>
+</head>
+<body>
+    <h1>배열관련 함수들</h1>
+<script>
+    // charAt(인덱스) : 문자열의 한 글자만 추출
+    var str = "안녕하세요!";
+    var str1 = new String("안녕하세요!");//String객체 생성자 함수
+    document.write('str.charAt(0) : ', str.charAt(0) +  "<br>");
+    document.write('str1.charAt(1) : ', str1.charAt(1) + "<br>");
+    document.write('str.charAt(2) : ', str.charAt(2) + "<br>");
+    document.write('str[5]: ', str[5] + "<br>");
+    document.write('str.length: ', str.length + "<br><hr>");
+
+    document.write("<h3>Array.isArray() :배열객체 여부 판별</h3>");
+    // Array.isArray() :배열객체 여부 판별
+    var arr = [1, true, "JavaScript"];
+    document.write('배열여부arr: ', Array.isArray(arr) + "<br>");
+    document.write('배열여부str: ', Array.isArray(str) + "<br><hr>");
+
+    console.log('type: ', typeof arr);
+
+    document.write("<h3>객체|변수|데이터 instanceof  자료형명 :  객체타입(대문자자료형)의 자료형 여부 판별(원시타입은 불가)</h3>");
+    // 객체|변수|데이터 instanceof  자료형명 :  객체타입(대문자자료형)의 자료형 여부 판별(원시타입은 불가)
+// 객체|변수|데이터 instanceof  객체타입명 :  객체타입(대문자자료형)의 자료형 여부 판별(원시타입은 불가)
+document.write( 'arr instanceof Array : ', (arr instanceof Array) + "<br>");
+document.write( 'str instanceof Array : ', (str instanceof Array) + "<br>");
+document.write( 'str instanceof String : ', (str instanceof String) + '<br>');
+document.write( 'str1 instanceof String : ', (str1 instanceof String) + "<br><hr>");
+
+// typeof  객체|변수|데이터 또는  typeof(객체|변수|데이터) : 원시타입의 자료형을 문자열값으로 반환(소문자로 반환)
+console.log(typeof arr);
+console.log(typeof str);
+console.log(typeof (str1));
+if (typeof (str) == 'string') console.log('원시타입의 문자열값입니다.');
+else console.log('원시타입의 문자열값이 아닙니다.');
+
+console.log(typeof(function fnc(){ console.log('함수'); }()));
+document.write('함수객체판별여부 : ' , function fnc(){ console.log('함수'); } instanceof Function );
+
+
+
+</script>
+</body>
+</html>

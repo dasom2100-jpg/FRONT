@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>screen</title>
+	<style>
+		*{box-sizing: border-box;}
+		body {
+			/* height: 1200px; */
+			margin: 0;
+			/* padding: 20px; */
+		}
+		#abs {position : absolute; top: 10px; left: 50px;}
+		div {font-size: 20px;}
+	</style>
+</head><body>
+	<div id="divBox"></div>
+	<div id="abs">
+		<button onclick="wfn()">창크기</button>
+		<button onclick="cfn()">innerWidth 적용</button>
+		<button onclick="vfn()">100vw, 100vh 적용</button>
+	</div>
+	<script>
+		// console.log('window: ', window);
+		// console.log('screen: ', screen);
+		//해상도: 1920 * 1200 (자신들의 디바이스의 해상도를 적어두세요.)
+		function wfn() {
+			let tDiv = document.getElementById('textDiv');
+			if(tDiv != null) tDiv.remove();
+
+			//screen : screen에 해당되는 장치모두 =>컴퓨터, 노트북, 핸드폰, 태블릿 등의 
+			// 너비(width)와 폭(height)
+			let body = document.body;
+			body.style.backgroundColor = "#fff";
+
+			let divTag = document.createElement('div');  
+			divTag.setAttribute('id', 'textDiv');
+
+			let str = "<br><small style='color:red;'>**screen객체: 컴퓨터, 노트북, 핸드폰, 태블릿 등</small>";
+			str += "<h2>screen객체의 해상도(화면 또는 모니터) 너비(width)와 폭(height)</h2>";
+			str += "<br>screen.width : " + window.screen.width+"px";
+			str += "<br>screen.height : " + window.screen.height+"px<br><br>";
+			
+			//작업표시줄을 제외한 화면의 너비(width)와 폭(height)
+			str += "<hr><h2>screen객체의 해상도(화면 또는 모니터) 중 작업표시줄을 제외한 너비(width)와 폭(height)</h2>";
+			str += "<br>screen.availWidth : " + screen.availWidth + "px";
+			str += "<br>screen.availHeight : " + screen.availHeight + "px<br><br>";
+			
+			// viewport : 브라우저의 너비(width)와 폭(height), 스크롤포함(대략 17px안팎) ,개발자도구창미포함
+			// innerWidth : 너비(width)와 폭(height), 스크롤 포함 , 개발자도구창미포함
+			str += "<hr><h2>브라우저의 viewport의 너비(width)와 폭(height), 스크롤포함(대략 17px안팎)</h2>";
+			str += "<br>window.innerWidth : " + window.innerWidth +"px";
+			str += "<br>window.innerHeight : " + window.innerHeight +"px";
+
+			divTag.innerHTML = str;
+			body.appendChild(divTag);
+		}
+
+		function cfn() {
+			// var pic = document.body;
+			var pic = document.getElementById('divBox');
+			pic.style.width = window.innerWidth + "px";
+			pic.style.height = window.innerHeight + "px";
+			pic.style.backgroundColor = "green";
+		}
+
+		function vfn() {
+			// var pic = document.body;
+			var pic = document.getElementById('divBox');
+			pic.style.width = "100vw"; // viewport width
+			pic.style.height = "100vh"; // viewport height
+			pic.style.backgroundColor = "red";
+		}
+	</script>
+</body>
+</html>

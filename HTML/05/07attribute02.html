@@ -1,0 +1,80 @@
+<!DOCTYPE html><!--  08attribute02.html -->
+<html>
+
+<head>
+    <title>input elements</title>
+</head>
+
+<body>
+    <h2>input elements</h2>
+    <form action="07attribute01.html" method="GET">
+        <!-- <form action="07attribute02.html" method="POST"> -->
+        <label for="username">Username:</label>
+        <!-- 이름은 한글만(자음, 모음따로는 입력되지 않도록) 
+        글자는 2글자 이상 20글자 이하로 가능하도록 설정 
+        -->
+        <input type="text" id="username" name="username" value="홍길동" pattern="^[가-힣]{2,20}$" required><br>
+        <label for="pwd">Password:</label>
+
+        <input type="password" id="pwd" name="pwd" pattern="[A-Za-z0-9!@#$%^&*\(\)_+\-=\[\]{};':\"\\|,.<>\/?]{6,20}"><br>
+<!-- 
+    placeholder 속성은 input 요소에 입력되어야 할 값에 대한 힌트를 제공. 
+    input 엘리먼트의 type이 text, password, email, tel, url,
+    search에만 사용 가능.
+    tel : 사파리 8이상에서만 지원됨.
+-->
+        <label for="phone">Phone number:</label>
+        <!-- 
+        비밀번호는 영어대소문자, 숫자, 특수문자만 가능하도록 글자는 6글자 이상 20글자 이하로 가능하도록 설정
+        -->
+        <input type="tel" id="phone" name="phone" placeholder="010-1234-5678"  pattern="(010)-[0-9]{4}-[0-9]{4}" required><br>
+        <small style="color:red;">전화번호 입력 예시: 010-1234-5678</small><br>
+<!--
+pattern 속성 : 
+pattern 속성은 input 요소에 입력된 값을 검사하기 위한 
+정규 표현식(regular expression)을 설정할 수 있다. 
+
+정규 표현식이란 특정한 규칙을 가지는 문자열검색 패턴
+정규표현식 사용 가능 범위: 
+input요소의 type속성값이 text, password, email, tel, url인 경우
+사용 가능함.
+
+사파리, 익스플로러 9이하 버전은 지원 안됨.
+1. [a-zA-Z0-9]+ : 영어소문자,영어대문자,숫자 중 개수에 상관없이 사용 가능.
+2. [@] : '@' 문자만이 나와야 함.
+3. [.] : '.' 문자만이 나와야 함.
+4. [.]* : '.' 문자가 나와도 되고 나오지 않아도 됨.
+5. [a-zA-Z0-9]* : 영어소문자,영어대문자,숫자 중 어느 것이라도 상관없이 나와도 되고 나오지 않아도 됨.
+6. [0-3]{3} : 숫자는 0~3까지 사용가능하며 3자리 숫자까지만 사용 가능.
+자바스크립트의 정규표현식에서 따온 것임. 
+7. +만 있는 경우 또는 + [문자값들]* : 뒤에 값이 더 존재할 수도 있고, 없을 수도 있다.
+8. +[문자값들] : *가 없는 경우는 +뒤의 값 중 한 개의 값이 반드시 존재해야한다.
+-->
+        <!-- <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br> -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><br>
+        <!-- <input type="email" id="email" name="email" 
+        pattern="[a-zA-Z0-9_]+[@][a-zA-Z]+[.]+[a-zA-Z]+[.][fk]"><br> -->
+        <!-- <input type="email" id="email" name="email" 
+        pattern="[a-zA-Z0-9_]+[@][a-zA-Z]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*"><br> -->
+
+        <label for="homepage">Homepage:</label>
+        <!-- 
+        프로토콜은 http또는 https로만 가능하도록
+        반드시 프로코콜로 시작
+        :(콜론)이 반드시 1개 존개
+        //가 반드시 존재
+        www.가 0개 또는 1개
+        영어소문자 -, _ 중 여러개
+        .(dot)반드시 1개
+        영어소문자 중 여러개 정규표현식을 작성
+        -->
+        <input type="url" id="homepage" name="homepage" pattern="^(http|https)://(www\.)?[a-z_-]+\.[a-z]*" required><br>
+
+        <input type="submit" value="가입하기">
+        <input type="reset">
+    </form>
+</body>
+
+</html>

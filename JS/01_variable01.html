@@ -1,0 +1,77 @@
+<!DOCTYPE html><!-- 01_variable01.html -->
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>변수 선언 및 사용</title>
+<style>
+body{ margin : 0;}
+</style>
+	<script>
+		/*
+		변수 선언 초기화 재할당(재사용) , 재선언
+		var 변수명; 또는 var 변수명 = 값;
+		let 변수명; 또는 let 변수명 = 값;
+		const 상수명 = 값;
+		
+		var => 전역 : 재선언, 재할당
+		let => 지역 : 재할당
+		const => 상수 : 둘 다 안됨.
+
+		var a ; //선언 => undefineded
+		a = 1; // 초기화 재할당
+		a = '가나다'; //재할당
+
+		var a = 5; //재선언
+
+		호이스팅(Hoisting) : 
+		해당 지역에서 모든 선언부를 가장 최상단으로 
+		강제로 끌어올리는 방법 
+		호이스팅이 가능한 경우 : var변수 선언, 선언적함수로 선언하는 경우만 가능
+		*/
+		// alert("자바스크립트의<br>줄바꿈입니다.");
+		// var 예약어 사용
+		/*
+		undefined은 변수를 선언하고 값을 할당하지 않은 상태, 
+		null은 변수를 선언하고 빈 값을 할당한 상태(빈 객체)이다. 
+		즉, undefined는 자료형이 없는 상태이다.
+
+		undefined : 어떠한 값이 할당되었는지 알 수가 없다. 할당이 되어 있지 않은 값
+		null : 값이 비어있다라는 의미, 비어있는 값
+		'' 또는 "" : 빈 문자열값
+		*/
+		box;
+		document.write('1. ' + box +"<br>");
+
+		var box = '';
+		document.write('2. ', box ,"<br>");
+
+		var box = null;
+		document.write('3. ', box ,"<br>");
+
+		box = 30;
+		document.write('4. ', box ,"<br>");
+
+		box = "재선언 가능";
+		document.write('5. ', box + "<br>");
+
+		let a = true;
+		document.write('6. ', a, "<br>");
+
+		// let 예약어 사용
+		a = true;
+		document.write('7. ', a, "<br>");
+
+		// let a = "재선언 불가";
+		a = "재할당 가능";
+		document.write('8. ', a , "<br>");
+
+		// const 예약어 사용
+		//선언만 하는 것은 불가
+		// const b; 
+		const b = "상수";
+		// const b = "재선언 불가";
+		// b = "재할당 불가";
+		document.write('9. ', b, "<br>");
+	</script>
+</head><body>
+</body></html>

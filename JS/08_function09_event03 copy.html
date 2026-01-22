@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>check박스 체크 여부 확인하기</title>
+   <script>
+       
+        // 전체선택 기능 구현
+        window.onload = function() {
+            // ========== 계절 전체선택 기능 ==========
+            const allChk = document.getElementById("allChk");
+            const seasonChks = document.getElementsByName("SEASON");
+
+            // 전체선택 체크박스 클릭 시
+            allChk.onclick = function() {
+                for (let i = 0; i < seasonChks.length; i++) {
+                    seasonChks[i].checked = this.checked;
+                }
+            };
+
+            // 개별 체크박스 클릭 시 (전체선택 자동 체크/해제)
+            for (let i = 0; i < seasonChks.length; i++) {
+                seasonChks[i].onclick = function() {
+                    let allChecked = true;
+                    for (let j = 0; j < seasonChks.length; j++) {
+                        if (!seasonChks[j].checked) {
+                            console.log('!seasonChks[j].checked: ', seasonChks[j]);
+                            allChecked = false;
+                            break;
+                        }
+                    }
+                    allChk.checked = allChecked;
+                };
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <form name="frmJoin" onsubmit="return CheckForm()">
+        <label><input type="checkbox" id="allChk" name="allChk"> 전체선택</label><br>
+
+        <label><input type="checkbox" id="spring" name="SEASON" value="1">봄</label>
+        <label><input type="checkbox" id="summer" name="SEASON" value="2">여름</label>
+        <label><input type="checkbox" id="fall" name="SEASON" value="3">가을</label>
+        <label><input type="checkbox" id="winter" name="SEASON" value="4">겨울</label>
+
+        <br><br>
+        <input type="submit" value="전송">
+    </form><br><br>
+
+  
+  
+
+
+  
+
+</body>
+
+</html>

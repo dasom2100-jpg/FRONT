@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8">
+	<title>setInterval, clearInterval</title>
+</head><body>
+	<input type="text" id="autoNum" placeholder="인증번호입력(12345)" disabled>
+	<button type="button" id="authBtn" onclick="startTimer()">인증번호 전송</button>
+	<span id="demo"></span>
+
+	<script>
+	var myVar;
+	var totalSeconds = 10; // 1분 = 60초 (10초로 하려면 10으로 변경)
+	
+	function startTimer(){
+		// 시간 초기화
+		totalSeconds = 10; // 또는 10초
+		
+		document.getElementById('autoNum').value = '';
+		document.getElementById('authBtn').innerText = '인증번호 확인';
+		document.getElementById('authBtn').setAttribute('onclick','stopTimer()');
+		document.getElementById('autoNum').removeAttribute('disabled');
+		
+		// 1초마다 myTimer 함수 실행
+		myVar = setInterval(myTimer, 1000);
+	}
+
+	function stopTimer(){
+		if(document.getElementById('autoNum').value == ''){
+			alert('인증번호가 입력되지 않았습니다.');
+			return;
+		}
+		
+		if(document.getElementById('autoNum').value == '12345'){
+			alert('인증완료되었습니다.');
+			stopTimerSub();
+			document.getElementById("demo").innerHTML = '';
+		}else{
+			alert('인증번호가 일치하지 않습니다.');
+		}
+	}
+
+	function stopTimerSub(){
+		clearInterval(myVar);
+		document.getElementById('autoNum').setAttribute('disabled', true);
+		document.getElementById('authBtn').innerText = '인증번호 전송';
+		document.getElementById('authBtn').setAttribute('onclick','startTimer()');
+	}
+
+	function myTimer() {
+		var m = Math.floor(totalSeconds / 60);
+		var s = totalSeconds % 60;
+		
+		// 시간 표시
+		var display = (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
+		document.getElementById("demo").innerHTML = display;
+		
+		// 시간 감소
+		totalSeconds--;
+		
+		// 시간 종료
+		if(totalSeconds < 0){
+			stopTimerSub();
+			document.getElementById("demo").innerHTML = '00:00';
+		}
+	}
+	</script>
+</body></html>

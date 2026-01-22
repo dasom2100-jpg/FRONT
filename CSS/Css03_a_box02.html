@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input.ipst[type=submit]:hover {
+            background: black;
+            cursor: pointer;
+        }
+
+        input.ipst[type=submit]:active {
+            background: red;
+        }
+
+        h1 {
+            text-align: center;
+            color: #583d58;
+        }
+
+        input#uid::placeholder,
+        input#upw::placeholder,
+        textarea#uintro::placeholder {
+            color: #430043;
+        }
+
+        textarea#uintro::placeholder {
+            font-weight: bold;
+        }
+
+        form .ipst {
+            display: block;
+            box-sizing: border-box;
+            color: rgb(124 72 163);
+            width: 100%;
+            height: 60px;
+            margin-bottom: 20px;
+            padding: 10px 15px 10px;
+            outline: none;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: normal;
+            border: 2px solid rgb(202, 128, 255);
+        }
+
+        form {
+            width: 500px;
+            margin: 20px auto;
+        }
+
+        form input[type=checkbox] {
+            width: 20px;
+            height: 20px;
+            margin: 0px;
+            vertical-align: bottom;
+        }
+
+        form input[type=submit] {
+            margin-top: 20px;
+            border: none;
+            background-color: rgb(202, 128, 255);
+            color: #fff;
+        }
+
+        form textarea.ipst {
+            height: 100px;
+            resize: none;
+        }
+
+        form span#htitle {
+            color: rgb(124 72 163);
+            font-weight: 700;
+            margin-right: 15px;
+        }
+
+        form :focus {
+            background-color: rgb(245 234 252);
+        }
+
+        form label[for^="hobby"] {
+            padding-left: 20px;
+        }
+
+        form input#uid {
+            background-image: url('./img/searchicon.svg');
+            background-size: 30px;
+            background-position: 97% 50%;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <h1>회원 가입</h1>
+        <input type="text" name="uid" id="uid" class="ipst" placeholder="아이디 입력">
+        <input type="password" name="upw" id="upw" class="ipst" placeholder="비밀번호 입력">
+        <select class="ipst" name="optSelect">
+            <option value="sel1">선택1</option>
+            <option value="sel2">선택2</option>
+            <option value="sel3">선택3</option>
+        </select>
+        <textarea name="uintro" id="uintro" class="ipst" placeholder="소개글 입력"></textarea>
+
+        <div>
+            <span id="htitle">취미선택 &gt;&gt;</span>
+
+            <label for="hobby1">독서</label>
+            <input type="checkbox" name="hobby1" id="hobby1" value="ho1">
+
+            <label for="hobby2">음악</label>
+            <input type="checkbox" name="hobby2" id="hobby2" value="ho2">
+
+            <label for="hobby3">쇼핑</label>
+            <input type="checkbox" name="hobby3" id="hobby3" value="ho3">
+
+            <label for="hobby4">미술</label>
+            <input type="checkbox" name="hobby4" id="hobby4" value="ho4">
+
+            <label for="hobby5">운동</label>
+            <input type="checkbox" name="hobby5" id="hobby5" value="ho5">
+        </div>
+
+        <input type="submit" value="회원 가입" class="ipst">
+
+    </form>
+</body>
+
+</html>

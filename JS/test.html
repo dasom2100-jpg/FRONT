@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+	:root {
+  --color-bg: #0c1124;
+  --color-surface: #10182f;
+  --color-panel: #141e36;
+  --color-border: #1e2a4a;
+  --color-muted: #9ba7c5;
+  --color-text: #e8edff;
+  --color-strong: #ffffff;
+  --color-primary: #8b7bff;
+  --color-primary-2: #6f63ff;
+  --color-secondary: #2dd4bf;
+  --color-secondary-2: #22bfa9;
+  --color-info: #38bdf8;
+  --color-warning: #f59e0b;
+  --color-error: #ef476f;
+  --color-success: #22c55e;
+  --color-accent: #ff7a8a;
+  --color-highlight: #f7cf5d;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.35), 0 1px 0 rgba(255, 255, 255, 0.03);
+
+}
+input {
+    width: 50%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: #FF9800;
+    font-size: 14px;
+    font-weight: 400;
+    outline: none;
+    accent-color: #FF9800;
+}
+button {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: hsl(209, 92%, 45%);
+	color: #fff;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+ button:hover {
+    background-color: hsl(209, 92%, 35%);
+    color: #fff;
+}
+button:hover {
+    background-color: hsl(209, 92%, 35%);
+    color: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin:40px;
+  min-height: 100vh;
+  background: radial-gradient(1200px circle at 12% 18%, rgba(255, 99, 208, 0.16), transparent),
+    radial-gradient(900px circle at 50% 16%, rgba(212, 45, 204, 0.12), transparent),
+    linear-gradient(135deg, #3823dd 0%, #e9eaf1 40%, #e7e8f0 100%);
+  color: var(--color-text);
+  font-family: 'Inter', 'Noto Sans KR', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+	.red{
+		color:red;
+	}
+</style>
+    <script>
+        /*
+        버튼을 클릭할 때 해야 할 일
+        1번 입력창의 값을 가져와서 콘솔창에 출력하기
+        2번 입력창의 값을 가져와서 5를 곱한 값을 콘솔창에 출력하기
+        3번 입력창의 값을 '자바스크립트'로 설정하기
+        1번째 p태그의 내용을 '0번째 p태그'로 변경하기
+        2번째 p태그의 내용과 3번째 p태그의 내용을 가져와서 마지막 div태그안에 <mark>태그로 묶어서 표현하기
+        */
+       function doIt(){
+            // 1번 입력창의 값을 가져와서 콘솔창에 출력하기
+            let input1 = document.getElementsByTagName('input')[0].value;
+            console.log(input1);
+
+            // 2번 입력창의 값을 가져와서 5를 곱한 값을 콘솔창에 출력하기
+            let input2 = document.getElementById('inum').value;
+            console.log(input2 * 5);
+
+            // 3번 입력창의 값을 '자바스크립트'로 설정하기
+            document.getElementsByTagName('input')[2].value = '자바스크립트';
+
+            // 1번째 p태그의 내용을 '0번째 p태그'로 변경하기
+          document.getElementsByTagName('p')[0].innerText = '0번째 p태그';
+
+            // 2번째 p태그의 내용과 3번째 p태그의 내용을 가져와서 마지막 div태그안에 <mark>태그로 묶어서 표현하기
+            let p2 = document.getElementsByClassName('pcls')[0].innerText;
+            let p3 = document.getElementsByClassName('pcls')[1].innerText;
+            document.getElementsByTagName('div')[0].innerHTML = `<mark>${p2} ${p3}</mark>`;
+       }
+    </script>
+</head>
+<body>
+   
+
+        1번 입력 : <input type="text"><br>
+        2번 입력 : <input type="number" id="inum"><br>
+        3번 입력 : <input type="search" value="css입니다."><br>
+        <p>1번째 p태그</p>
+        <p class="pcls">2번째 p태그</p>
+        <p class="pcls">3번째 p태그</p>
+        <div></div>
+        <button type="button" onclick="doIt()">클릭</button>
+
+    
+</body>
+</html>

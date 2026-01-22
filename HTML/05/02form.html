@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{border: 1px solid #000; padding: 5px;}
+    </style>
+</head>
+<body>
+    
+<h2> the select태그</h2>
+<p>select 요소(태그)는 드롭다운메뉴를 정의ㅏㄹ대 사용한다</p>
+
+
+<form action="">
+
+        <label for="frits">chose a fruit:</label>
+        <select name="fruits" id="fruits">
+            <option>Apple</option>
+            <option value="water melon">멜론</option>
+            <option value="orange">오렌지</option>
+            <option value="lemon" selected>레몬</option>
+        </select><br><br>
+
+        <label for="colors">Choose a colors:</label>
+        <!-- mutiple 속성 -->
+        <select name="colors" id="colors" size="2" multiple>
+            <option value="red">red</option>
+            <option value="green">green</option>
+            <option value="blue">blue</option>
+            <option value="yellow">yellow</option>
+        </select> <br></br>
+
+        <!-- optgroup 요소 -->
+        <lable for="cars"> Chiise a car:</lable>
+        <select name="cars" id="cars">
+            <optgroup label="Swedish Cars">
+                <option value="velvo">볼보</option>
+                <option value="saab">사브</option>
+            </optgroup>
+            <optgroup label="German Cars">
+                <option value="mercedes">메르세데스</option>
+                <option value="audi">아우디</option>
+            </optgroup>
+        </select><br><br>
+
+        <input type="submit" value="전송">
+</form>
+
+
+
+
+
+
+
+</body>
+</html>

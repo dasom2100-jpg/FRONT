@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            margin: 20px; border: 1px solid #000;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="firstDiv">첫째 DIV</div>
+    <div id="secDiv">둘째 DIV</div>
+
+    <div class="divClass">DIV 클래스1</div>
+    <div class="divClass">DIV 클래스2</div>
+    <div class="divClass">DIV 클래스3</div>
+    <br><br><br>
+
+    <div id="paDiv">
+        <div class="divClass">DIV 클래스4</div>
+        <div class="divClass">DIV 클래스5</div>
+        <div class="divClass">DIV 클래스6</div>
+    </div>
+    
+    <h2>querySelector() 함수</h2>
+    <p style="padding:20px 50px;border: 1px solid #000;">
+        - 형식 : document.querySelector("셀렉터명");<br>
+        - 제공한 선택자 또는 선택자 그룹과 일치하는 문서 내 첫 번째 Element를 반환한다.<br>
+        - 일치하는 요소가 없으면 null을 반환한다.
+    </p>
+
+    <h2>querySelectorAll() 함수</h2>
+    <p style="padding:20px 50px;border: 1px solid #000;">
+        - 형식 : document.querySelectorAll("셀렉터명");<br>
+        - 제공한 선택자 또는 선택자 그룹과 일치하는 문서 내 Elements를(배열객체요소) 반환한다.<br>
+        - 일치하는 요소가 없으면 빈 배열객체( [] )를 반환한다.
+    </p>
+
+    <br><br><br>
+
+    <script>
+        let a = document.querySelector('#firstDiv');
+        console.log('a: ', a);
+
+        let b = document.querySelector('#fDiv');
+        console.log('b: ', b);
+
+        let c = document.querySelector('#secDiv');
+        console.log('c: ', c);
+
+        let cc = document.querySelector('.divClass');
+        let d = document.querySelectorAll('.divClass');
+        //let d = document.getElementById('paDiv').querySelectorAll('.divClass');
+        console.log('cc: ', cc);
+        console.log('d[0]: ', d[0]);
+        console.log('d[1]: ', d[1]);
+        console.log('d[5]: ', d[5]);
+
+        let e = document.querySelectorAll('.dClass');
+        console.log('arr 1:', arr);
+
+        arr=document.querySelectorAll('.divClass');
+        console.log('arr 2: ', arr);
+
+    </script>
+
+</body>
+</html>

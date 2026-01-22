@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+<title>switch조건문</title>
+<style>
+	:root {
+  --color-bg: #0c1124;
+  --color-surface: #10182f;
+  --color-panel: #141e36;
+  --color-border: #1e2a4a;
+  --color-muted: #9ba7c5;
+  --color-text: #e8edff;
+  --color-strong: #ffffff;
+  --color-primary: #8b7bff;
+  --color-primary-2: #6f63ff;
+  --color-secondary: #2dd4bf;
+  --color-secondary-2: #22bfa9;
+  --color-info: #38bdf8;
+  --color-warning: #f59e0b;
+  --color-error: #ef476f;
+  --color-success: #22c55e;
+  --color-accent: #ff7a8a;
+  --color-highlight: #f7cf5d;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.35), 0 1px 0 rgba(255, 255, 255, 0.03);
+
+}
+input {
+    width: 50%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: #FF9800;
+    font-size: 14px;
+    font-weight: 400;
+    outline: none;
+    accent-color: #FF9800;
+}
+button {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: hsl(209, 92%, 45%);
+	color: #fff;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+ button:hover {
+    background-color: hsl(209, 92%, 35%);
+    color: #fff;
+}
+button:hover {
+    background-color: hsl(209, 92%, 35%);
+    color: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(1200px circle at 12% 18%, rgba(255, 99, 208, 0.16), transparent),
+    radial-gradient(900px circle at 82% 16%, rgba(212, 45, 204, 0.12), transparent),
+    linear-gradient(135deg, #0b1022 0%, #0b0f1f 40%, #0c1124 100%);
+  color: var(--color-text);
+  font-family: 'Inter', 'Noto Sans KR', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+	.red{
+		color:red;
+	}
+</style>
+
+<script>	
+	/*
+	================== Date 객체 생성 방법 ==================
+	
+	1. new Date(millisecond)
+	   - 1970년 1월 1일 00:00:00 UTC로부터 경과한 밀리초 값
+	   - 예: new Date(0) = 1970-01-01
+	   - 예: new Date(1704067200000) = 2024-01-01
+	   - 예: new Date().getTime() = 현재시간 밀리초값
+	   - 예: new Date(new Date().getTime() + 86400000) = 내일 날짜
+	   - 예: new Date(new Date().getTime() - 86400000) = 어제 날짜
+	   - 예: new Date(Date.now() + 86400000) = 내일 날짜	
+	   - 예: new Date(Date.now() - 86400000) = 어제 날짜
+	   - 예: new Date(Date.now()) = 현재 날짜
+	   - 예: new Date() = 현재 날짜
+	   -
+	   
+	2. new Date('dateString')
+	   - ISO 8601 형식의 문자열로 날짜 지정
+	   - 예: new Date('2024-01-15')
+	   - 예: new Date('2024-01-15T14:30:00')
+	   - 예: new Date('2024-01-15T14:30:00Z')
+	   
+	3. new Date(year, month, date, hour, min, second, millisecond)
+	   - 각 매개변수로 개별 지정 (모두 옵션)
+	   - year: 4자리 연도
+	   - month: 0(1월) ~ 11(12월) ※ 0부터 시작!
+	   - date: 1 ~ 31 (기본값: 1)
+	   - hour: 0 ~ 23 (기본값: 0)
+	   - min: 0 ~ 59 (기본값: 0)
+	   - second: 0 ~ 59 (기본값: 0)
+	   - millisecond: 0 ~ 999 (기본값: 0)
+	   - 예: new Date(2024, 0, 15) = 2024-01-15
+	   - 예: new Date(2024, 0, 15, 14, 30, 0) = 2024-01-15 14:30:00
+	   
+	주요 메서드:
+	- getDay(): 요일 반환 (0=일요일, 1=월요일, ... 6=토요일)
+	- getFullYear(): 연도 반환
+	- getTime(): 1970년 1월 1일 이후 밀리초 반환
+	- getMonth(): 월 반환 (0~11)
+	- getDate(): 날짜 반환 (1~31)
+	- getHours(): 시간 반환
+	- getMinutes(): 분 반환
+	-
+	========================================================
+	new Date().getTime() -
+	*/
+	
+	
+	function defDay() {
+		var day;
+		// input에서 선택한 날짜값 가져오기
+		var inputValue = document.getElementById("bdaytime").value;
+		
+		if (!inputValue) {
+			alert("날짜를 선택해주세요.");
+			return;
+		}
+		
+		// 입력한 날짜로 Date 객체 생성 (dateString 형식)
+		var d = new Date(inputValue).getDay();
+		switch (d) {
+			case 0: day = "일요일"; break;
+			case 1: day = "월요일"; break;
+			case 2: day = "화요일"; break;
+			case 3: day = "수요일"; break;
+			case 4: day = "목요일"; break;
+			case 5: day = "금요일"; break;
+			default : day = "토요일";
+		}	
+		
+		var outputEl = document.getElementById("output");
+		outputEl.innerText = "오늘은 " + day + "입니다.";
+		outputEl.className = "red";
+	}
+
+	function resetDay() {
+		var outputEl = document.getElementById("output");
+		outputEl.innerText = "요기에 요일 출력";
+		outputEl.className = "";
+	}
+
+</script>
+</head>
+<body >
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin: auto; justify-content: center; align-items: center; height: 70vh; margin-top: 20px; border: 1px solid #ccc; padding: 20px; border-radius: 10px; background-color: var(--color-surface); box-shadow: var(--shadow-strong);">
+	<head>
+	
+		날짜 선택 : 
+		<input type="datetime-local" name="bdaytime" id="bdaytime">
+	</head>	
+	
+	<section style="margin-top:10px;">
+	
+		<button type="button" onclick="defDay()" >요일확인</button>
+		<button type="reset" onclick="resetDay()" >초기화</button>
+	
+	</section>
+	
+	<p id="output" >요일을 보여줘</p>
+
+</div>
+
+</body>
+</html>

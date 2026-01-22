@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head>
+	<meta charset="UTF-8">
+	<title> 산술 연산자 </title>
+	<script>
+		function pclick(){
+			// let x = Number(document.getElementById("xspan").innerText);
+			// let y = Number(document.getElementById("yspan").innerText);
+			let x = Number(document.getElementById("xspan").value);
+			let y = Number(document.getElementById("yspan").value);
+			let z = x + y;
+			document.getElementById("demo").innerHTML = 
+			"<input type='number' value='"+z+"' >";
+		}
+	</script>
+</head><body>
+<h2>JavaScript Operators</h2>
+<input type="number" id="xspan"> + <input type="number" id="yspan"> = <span id="demo"></span>
+<!-- <span id="xspan">5</span> + <span id="yspan">7</span> = <span id="demo"></span> -->
+<!-- <p>
+	x = 5, y = 2, calculate z = x + y, and display z =
+	<span id="demo"></span>
+	
+</p> -->
+
+<button type="button" onclick="pclick()">답확인</button>
+</body>
+</html>

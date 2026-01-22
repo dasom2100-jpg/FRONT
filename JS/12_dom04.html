@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .divBox {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        border: 1px solid #000;
+    }
+    
+</style>
+
+<script>
+window.onload = function () {
+    //createElement(태그명) : 웹문서 내에 해당 엘리먼트(태그)를 만들어 준다.
+    //객체명.setAttribute("속성명", "속성값") :
+    //=> 해당 객체의 속성을 설정할때 사용하는 함수.
+    //=> 속성이 있으면 속성변경 속성이 없으면 속성생성
+    
+    //appendChild(객체명) : 웹문서내의 지정 요소안의 맨 마지막에 자식요소로 해당 객체를 추가해 준다.
+    //**객제명으로 들어올 수 있는 단위 : 반드시 element(태그)단위로 들어와야 한다.
+    //이전의 객체들(텍스트를 포함한 모든 엘리먼트 요소들)은 유지됨.
+    //append(추가할 노드값) : 웹문서내의 지정 요소안의 자식요소로 추가
+    //**추가될 노드값 : element(태그), 텍스트, 숫자등의 Node단위로 설정
+    
+   var pic = document.createElement('img');
+pic.setAttribute('src', './img/pic_bulbon.gif');
+};
+
+function imgAdd() {
+    var pic = document.createElement('img');
+    pic.setAttribute('src', './img/history.png');
+    document.body.getElementsByTagName("p")[0].appendChild(pic);
+    let brTag = document.createElement('br');
+    document.body.append(brTag);
+    document.body.append("**스트를 추가합니다.");
+}
+
+function rmAttr() {
+    document.getElementsByTagName('DIV')[0].removeAttribute('class');
+}
+
+function addAttr() {
+    document.getElementsByTagName('DIV')[0].setAttribute('class', 'divBox');
+};
+</script>
+
+</head>
+<body>
+    <p>Hello DOM<br><br></p>
+    <p>Document Object Model</p>
+    <button onclick="addAttr()">박스생성</button>
+    <button onclick="rmAttr()">박스삭제</button>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

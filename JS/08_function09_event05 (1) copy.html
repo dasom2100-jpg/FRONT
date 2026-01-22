@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>전체동의 구현 - 모던 JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .agree-container {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .agree-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        .agree-item input {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .agree-item label {
+            margin: 0;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .all-agree {
+            background-color: #e8f4f8;
+            border: 2px solid #667eea;
+            margin-bottom: 20px;
+        }
+
+        .all-agree .agree-item {
+            margin: 0;
+            padding: 15px;
+        }
+
+        .all-agree input {
+            width: 20px;
+            height: 20px;
+        }
+
+        .all-agree label {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #5568d3;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // checkbox 가져온다. 1개(all), 3개(terms)
+            const all = document.querySelector("input.all");
+            const terms = document.querySelectorAll("input.term");
+            
+            // NodeList에 map 메서드 추가
+            NodeList.prototype.map = Array.prototype.map;
+
+            // 전체동의 체크박스 클릭 시
+            all.addEventListener("click", () => {
+                terms.forEach((term) => {
+                    term.checked = all.checked;
+                });
+            });
+            
+            // 개별 약관 체크박스 클릭 시
+            terms.forEach((term) => {
+                term.addEventListener("click", () => {
+                    // 모든 약관이 체크되었는지 확인
+                    all.checked = terms.map((term) => term.checked).filter((checked) => checked).length === terms.length;
+                });
+            });
+
+            // 제출 버튼 이벤트
+            document.getElementById("submitBtn").addEventListener("click", function() {
+                if(all.checked) {
+                    alert("모든 약관에 동의했습니다!\n회원가입을 진행합니다.");
+                } else {
+                    alert("전체동의에 체크해주세요.");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>📋 이용약관 동의</h1>
+    
+    <div class="agree-container all-agree">
+        <div class="agree-item">
+            <input type="checkbox" class="all" id="allAgree">
+            <label for="allAgree">전체 약관에 동의합니다</label>
+        </div>
+    </div>
+
+    <div class="agree-container">
+        <div class="agree-item">
+            <input type="checkbox" class="term" id="term1">
+            <label for="term1">서비스 이용약관 동의 (필수)</label>
+        </div>
+
+        <div class="agree-item">
+            <input type="checkbox" class="term" id="term2">
+            <label for="term2">개인정보 수집 및 이용 동의 (필수)</label>
+        </div>
+
+        <div class="agree-item">
+            <input type="checkbox" class="term" id="term3">
+            <label for="term3">마케팅 정보 수신 동의 (선택)</label>
+        </div>
+    </div>
+
+    <button id="submitBtn">동의하고 계속</button>
+
+</body>
+</html>

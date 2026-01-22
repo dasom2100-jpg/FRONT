@@ -1,0 +1,72 @@
+font-family지정방법: 
+1. 브라우저의 기본글꼴을 사용
+ : font-family속성으로 서체값만 기술하면 됨.
+2. 커스텀 서체를 사용(서체를 사용자가 직접 만듬)
+ : 서체를 다운로드하여 @font-face시스템코드를 이용하여 만드는 서체
+3. 웹 상에서 제공되는 폰트를 link태그로 끌어서 사용
+ : link태그나 @import url()을 이용하여 웹상의 외부 폰트를 끌어다 사용하는 방식
+
+
+@font-face 작성형식
+@font-face{
+  font-family:"폰트이름";
+  src:local("폰트이름1"), local("폰트이름2"), url("폰트주소") format("폰트포맷");
+}
+**local: 사용자 컴퓨터에 폰트이름1이 설치되어있으면 그걸 사용, 없으면 폰트이름2를 사용,
+local에 명시된 이름이 없으면 url에 있는 폰트주소에서 다운받아서 사용하라는 의미임.
+
+
+웹에서 사용가능한 서체확장자
+1. eot(Embedded Open Type) : MS사에서 개발된 폰트(IE8버전 이하만 가능) 
+서체의 format()을 명시할 필요가 없다. 
+나머지 확장자는 포맷명시 필요.   예)  format('embedded-opentype')
+
+2. TTF(True Type Font): 모든 브라우저에서 사용(호환)가능한 서체 , 
+서체포맷 (truetype)을 명시해주어야 함. (권장)
+예) format("truetype") **(운영체제에 설치 가능한 글꼴)
+
+3.OTF(Open Tpye Font) : 확장 가능한 컴퓨터 글꼴이며, ttf를 기반으로 만들어진 서체
+**(운영체제에 설치 가능한 글꼴) format("opentype")
+
+4. WOFF(Wep Open Font Format): 대부분의 모던 브라우저에서 지원되는 웹 전용 서체.  
+**WOFF: otf와 ttf를 압축하여 웹에서 사용할 수 있도록 만들어준 포맷
+서체포맷 (truetype)을 명시해주어야 함.  (권장)
+예) format("woff")
+
+5. WOFF2(Wep Open Font Format2): 대부분의 모던 브라우저에서 지원되는 웹 전용 서체이며, 
+WOFF보다 압축률이 30% 정도 더 좋다.  
+서체포맷 (woff2)를 명시해주어야 함. (권장)
+예) format("woff2")
+ 
+======================================
+폰트 확장자명		폰트포맷
+======================================
+폰트명.woff		woff
+폰트명.eot		embedded-opentype
+폰트명.woff		woff2
+폰트명.otf		opentype		
+폰트명.svg		svg
+======================================
+
+-서체 기술 순서
+1. format 명시가 없는 서체를 가장 먼저 기술할 것
+2. 압축률이 가장 좋은(용량이 가벼운-로딩이 가장 빠른) 서체를 먼저 기술한다.
+woff2(가장 가벼움) > woff > ttf/otf > eot > svg순(가장 무거움)
+3. 반드시 format 명시를 해주어야 하는 폰트는 format을 명시해주는 것이 좋다.
+
+
+서체관련 참고사이트들
+-서체다운 : 
+https://fonts.google.com/?subset=korean&script=Kore
+https://gongu.copyright.or.kr/gongu/bbs/B0000018/list.do?menuNo=200195
+
+
+-서체설명
+https://whales.tistory.com/66
+
+https://velog.io/@sklove96/%EC%9B%B9%ED%8F%B0%ED%8A%B8-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0ttf-otf-woff
+
+https://koreawebdesign.com/webfont/
+https://www.yoondesign-m.com/64
+https://apost.dev/940/
+https://moo-you.tistory.com/294

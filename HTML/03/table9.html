@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>표 만들기</title>
+	<style>
+		table {width: 100%;}
+		td {font-weight: bold;}
+		table, td {border : 1px solid gray;}
+	</style>
+</head>
+<body>
+	<table>
+		<caption>colgroup 연습</caption>
+		<colgroup>
+		<col span="2" width="20%">
+		<col span="2" style="background-color:blue;">
+		</colgroup>
+		<tr><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+		<tr><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+	</table>
+
+	<!-- colgroup 포함 -->
+table>(colgroup>col*5)+(thead>tr>th*5)+(tbody>tr*3>td*5)	
+
+</body>
+</html>

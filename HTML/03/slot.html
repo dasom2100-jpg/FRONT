@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    details {
+      font-family: "Open Sans Light", "Helvetica", "Arial", sans-serif;
+    }
+    .name {
+      font-weight: bold;
+      color: #217ac0;
+      font-size: 120%;
+    }
+    h4 {
+      margin: 10px 0 -8px 0;
+      background: #217ac0;
+      color: white;
+      padding: 2px 6px;
+      border: 1px solid #cee9f9;
+      border-radius: 4px;
+    }
+    .attributes {
+      margin-left: 22px;
+      font-size: 90%;
+    }
+    .attributes p {
+      margin-left: 16px;
+      font-style: italic;
+    }
+    img {border: 1px solid #ddd}
+  </style>
+</head>
+<body>
+
+    <details>
+
+        <summary>
+            <code> 제목-1 </code>
+            <slot>NEED DESCRIPTION</slot>
+        </summary>
+        <hr>
+        <div class="attributes">
+            <h4>Attributes1의 제목</h4>
+            <slot name="attributes"><p>attributes1-1의 내용 입력</p></slot>
+            <slot name="attributes"><p>attributes1-2의 내용 입력</p></slot>
+        </div>
+     
+    </details>
+    <details>
+
+         <summary>
+            <code> 제목-2</code>
+            <slot>NEED DESCRIPTION</slot>
+        </summary>
+        <div class="attributes">
+            <h4>Attributes2의 제목</h4>
+            <slot name="attributes"><p>attributes2-1의 내용 입력</p></slot>
+            <slot name="attributes"><p>attributes2-2의 내용 입력</p></slot>
+        </div>
+
+    </details>
+
+    <hr />
+
+<a href="../01/00hello.html"> 02에 파일열기</a> <br>
+
+<figure style="border: 1px solid #ddd; display: inline-block;">
+    <figcaption> 맛있는 커피1 </figcaption>
+    <img src="../img/coffeehouse2.jpg" alt="커피" style="width: 600px;max-width: 100%;">
+</figure>
+<figure style="border: 1px solid #ddd; display: inline-block;">
+    <figcaption> 맛있는 커피2 </figcaption>
+    <img src="../img/coffeehouse2.jpg" alt="커피" style="width: 600px;max-width: 100%;">
+</figure>
+
+<figure >
+    <figcaption> 이미지 이동</figcaption>
+    <a href="../img/mac.jpg" target="_blank" title="아미지페이지로 이동"> computer 이미지 보기</a>
+</figure>
+
+<img src="../img/muffin.png" alt="">
+<img src="../img/muffin.svg" alt="">
+
+<h1>이미지에 링크 설정</h1>
+<a href="https://m.dongascience.com/ko/news/54418">
+    <img src="../img/cute_dog.jpg" alt="Girl in a jackt" style="width: 300px;">
+</a>
+
+Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates nemo dolor quasi hic expedita reprehenderit numquam officiis laborum, optio ratione nesciunt earum vel, explicabo quae enim cupiditate, suscipit ipsum laudantium.<br>
+Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates nemo dolor quasi hic expedita reprehenderit numquam officiis laborum, optio ratione nesciunt earum vel, explicabo quae enim cupiditate, suscipit ipsum laudantium.<br>
+Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates nemo dolor quasi hic expedita reprehenderit numquam officiis laborum, optio ratione nesciunt earum vel, explicabo quae enim cupiditate, suscipit ipsum laudantium.<br>
+Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates nemo dolor quasi hic expedita reprehenderit numquam officiis laborum, optio ratione nesciunt earum vel, explicabo quae enim cupiditate, suscipit ipsum laudantium.<br>
+
+<h2>절대경로: c:/부터 경로 잡을때 웹서버에서 보이지 않음</h2>
+<img src="c:/front/html/img/cellphone.jpg" alt="이미지설명" >
+<h2>상대경로 : 웹서버에서 열때 보임</h2>
+<img src="../img/cellphone.jpg" alt="">
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<head>
+    <title>버블링과 캡쳐링</title>
+    <!--
+    이벤트 전파(Event Propagation)란 :
+    이벤트가 발생했을 때, 발생된 요소로부터 이벤트가 상위요소이나 하위요소들에게까지 전파되는 현상을 말함.
+
+    이벤트 전파(Event Propagation) 방식의 종류 :
+    - 버블링(Bubbling) : 이벤트 전파가 클릭된 하위 요소에서 시작해서 부모 요소로 올라가며 전파되는 방식
+    - 캡쳐링(Capturing) : 이벤트 전파가 document부터 시작하여 최하위 요소까지 내려오며 전파되는 방식
+    -->
+</head>
+
+<body>
+    <div id="outer">
+        <div id="middle">
+            <button id="inner">클릭</button>
+        </div>
+    </div>
+
+    <script>
+        // 버블링 방식
+document.getElementById("outer").addEventListener("click", () => {
+    console.log("outer 이벤트발생");
+    console.log("이벤트가 실제로 발생한 엘리먼트 : ", event.target);
+    console.log("이벤트 리스너가 등록된 엘리먼트 : ", event.currentTarget);
+});
+
+document.getElementById("middle").addEventListener("click", () => {
+    console.log("middle 이벤트발생");
+});
+
+document.getElementById("inner").addEventListener("click", () => {
+    // event.stopPropagation(); // 이후로 전파되는 이벤트 막기
+    console.log("inner 이벤트발생");
+});
+
+// 캡처링 방식 : 3번째 매개인자 값을 true로 처리하면 됨.
+// document.getElementById("outer").addEventListener("click", () => {
+//     event.stopPropagation(); // 이후로 전파되는 이벤트 막기
+//     console.log("outer 이벤트발생");
+// }, true);
+
+// document.getElementById("middle").addEventListener("click", () => {
+//     console.log("middle 이벤트발생");
+// }, true);
+
+// document.getElementById("inner").addEventListener("click", () => {
+//     console.log("inner 이벤트발생");
+// }, true);
+
+
+    </script>
+
+
+</body>
+</html>

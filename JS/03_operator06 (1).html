@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="UTF-8">
+<title> 문자결합 연산자(+) </title>
+<style>
+	td {border: 1px solid #F00; padding: 20px;}
+</style>
+<script>
+	var t1 = "학교종이",  t2 = " 땡땡땡 ", t3 = " 어서 모이자 ";
+	var t4 = 8282, result;
+	result = t1 + t2 + t3 + t4; 
+	document.write(result);
+	// document.getElementById("result").innerHTML = result;
+
+
+	function tabCreate() {
+
+	let tableArea = document.getElementById("taBox");
+	
+
+	if(tableArea.innerHTML !== "") {
+		tableArea.innerHTML = "";
+	} else {
+		let style = "border:1px solid #000000;border-collapse:collapse;";
+		var str = `<table style="${style}">`;
+		str += "<tr>"; 
+		str += "<td>1</td><td>2</td><td>3</td>";
+		str += "</tr>";
+		str += "</table>";
+		tableArea.innerHTML = str;
+	}
+	}
+</script>
+</head>
+<body>
+
+	<!-- <div id="result"></div> -->
+	<hr>
+	<button type="button" onclick="tabCreate()">테이블생성하기</button>
+	<div id="taBox"></div>
+
+	<!-- <button type="button" onclick="tabCreate()">테이블생성하기</button> -->
+</body>
+</html>

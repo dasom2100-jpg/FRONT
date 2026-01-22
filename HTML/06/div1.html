@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>div 엘리먼트(태그)</title>
+  <style>
+    body { margin: 0px; padding: 0px; }
+    /* div { border: 1px solid #000000; } */
+  </style>
+</head>
+
+<body>
+  <h1>div태그(=element=요소)</h1>
+  <ul>
+      <li>
+        div태그는 HTML 문서에서 다른 엘리먼트에 영향을 주지 않으면서
+        웹페이지의 레이아웃을 정의할 때 사용하는 태그이다.
+      </li>
+      <li>인라인, 블럭레벨 요소 상관없이 모든 요소를 하나로 묶을 수 있다.</li>
+      <li>특수블럭레벨 요소로 width 100%만 가지고 있다.</li>
+  </ul>
+  <br><br>
+
+  <div>
+    0.div
+    <hr>
+    0.div기본
+    <h1>0.div기본</h1>
+  </div>
+
+
+  <div style="background-color: orange;">
+    1. div태그안의 span태그입니다.
+    <hr>
+    1. div태그 안의 텍스트입니다.
+    <h1>1. div태그안의 h1태그 제목입니다.</h1>
+  </div>
+
+  <!--  
+  width를 설정하지 않았을 때 margin, padding, border는 
+  해당 여백이 지정된 후 남은 영역을  100% 이내에서 처리 
+  -->
+  <div style="margin:30px;background-color: crimson;">2. 내용</div><br><br>
+  <div style="padding:30px;background-color:cyan;">2. 내용</div>  <br><br><br>
+
+  <!-- width를 설정하면 width설정한 값 + margin + padding + border값으로 처리 -->
+  <div style="width:100%;margin:30px;background-color:rgb(98, 0, 20);color:white;">3. 내용</div><br><br>
+  <div style="width:100%;padding:30px;background-color:rgb(0, 45, 45);color:white;">3. 내용</div><br><br><br>
+
+
+  <div style="background-color: aquamarine;">
+      <h1>div엘리먼트의 기본 속성</h1>
+      <div style="background-color:chocolate;">내용</div><br>
+
+      <table style="width:100px;height:100px;background-color:skyblue;">
+        <tr><td>1</td></tr> 
+      </table>
+
+      <img src="../img/cute_dog.jpg"><br>
+      엘리먼트의 기본 설정으로 정렬됨.
+  </div><br><br><br>
+
+
+  <div style="background-color: aquamarine;margin:0 auto;text-align:right;">
+      <h1>div엘리먼트에 margin:0 auto 속성 이해하기</h1>
+      <div style="width:100px;height:50px;background-color:chocolate;">내용</div>
+      <div style="width:100px;height:50px;background-color:chocolate;">내용</div>
+      <img src="../img/cute_dog.jpg"><br>
+      가운데 정렬이 되지 않는다.
+  </div><br><br><br>
+
+
+  <div style="background-color: aquamarine;margin:0 auto;width:70%;text-align:center;">
+      <h1>div엘리먼트에 margin:0 auto과 width 속성을 이용하여 가운데 정렬하기</h1>
+      <div style="width:100px;height:100px;background-color:chocolate;">내용</div>
+      <img src="../img/cute_dog.jpg"><br>
+      margin:0 auto; 속성: 해당 속성이 적용된 엘리먼트(태그)만 가운데 정렬이 된다.
+  </div><br><br>
+
+</body>
+</html>

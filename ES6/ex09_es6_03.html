@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+    생성자 함수내장 객체 만들기
+    생성자명은 되오록 자바의 클래스명명 규칙처럼 첫글자을 영어 대문자로 기술해준다
+    생성자에 종속된 변수는 this.변수명 으로 기술해준다
+    형식:
+    function 생성자명(매개변수1, 매개변수2, ...){
+        this.변수명1 ;
+        this.변수2 = 매개변수2;
+        ...
+        //함수선언문
+        this.별칭객체명 = function(매개변수1, 매개변수2, ...){
+            //실행문;
+        }
+        //prototyp으로 연결한 함수 호출문
+        this.함수명([매개변수1, 매개변수2, ...]){
+                //실행문;
+    }
+    
+      
+    
+    
+    -->
+  
+</head>
+<body>
+      <script>
+        function Product(name, price){
+            this.name = name;
+            this.price = price;
+            this.getInfo = function(){
+                return `제품명 : ${this.name}, 가격 : ${this.price}`;
+            }
+        }
+
+        //prototype으로 함수 연결하기
+        Product.prototype.getPrice = function(){
+            return this.price;
+        }
+
+        let product1 = new Product('도서', '4,200원');
+        let product2 = new Product('잡지', '3,500원');
+
+        document.write(product1.getInfo() + '<br>');
+        document.write(product2.getInfo() + '<br>');
+
+        document.write('product1의 가격 : ' + product1.getPrice() + '<br>');
+        document.write('product2의 가격 : ' + product2.getPrice() + '<br>');
+        </script>
+</body>
+</html>

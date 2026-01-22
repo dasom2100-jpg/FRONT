@@ -1,0 +1,26 @@
+스타일시트의 종류
+1. 인라인스타일시트(inline style sheet) : html의 시작엘리먼트(시작태그) 안에 style속성을 사용하여 기술하는 방식 => 해당 엘리먼트에만 적용
+예) <div style="border:1px solid #fff">div태그</div>
+
+2. 내부스타일시트(internal style sheet ) : html웹 문서 내부에 <style>태그를 사용하여 기술하는 방식
+=> 해당 웹문서 내에서만 적용
+예)<style>  div {border:1px solid #fff}  </style>
+
+3. 외부스타일시트(External Style Sheet) : 
+- 웹문서 내부가 아닌 외부에 별도의 .css확장자를 가지고 있는 파일을 의미함.
+- 반드시 외부 스타일시트를 사용하기 위해서는 사용하고자하는 웹 문서에 해당 스타일시트를 가져오는 설정을 해주어야 함.
+
+외부스타일시트 import방법(비권장-브라우저의 버전이나 브라우저의 종류에 따라 미지원되는 경우 발생)
+1. <style>태그 안에 @import코드를 사용하여 경로를 가져오는 방법
+형식: @import url("외부스타일시트의파일경로기술");
+예시) @import url("css/css03_a_list.css");
+
+2. <link>태그를 사용하여 경로를 가져오는 방법(권장형식)
+형식 : <link rel="stylesheet" type="text/css" href="외부스타일시트의파일경로기술">
+예시) <link rel="stylesheet" type="text/css" href="css/css03_a_list.css">
+** type속성은 생략가능.
+
+스타일의 적용범위 : 외부스타일시트 > 내부스타일시트 > 인라인스타일시트 
+스타일의 우선순위 : 인라인스타일시트 > 내부스타일시트 > 외부스타일시트 > 브라우저의 기본스타일시트
+** 단, 내부와 외부스타일시트는 기술순서나 선택자의 점수에 따라 순서가 변경될 수 있다.
+

@@ -1,0 +1,24 @@
+<!DOCTYPE html><!-- 01_variable04.html -->
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>변수 선언 및 사용</title>
+</head>
+<body>
+	<h2> 변수 선언 및 사용 </h2>
+	<p>const키워드는 지역의 의미가 있다.</p>
+	<p id="demo" style="border:1px solid #000;">
+		<span>하하하</span>
+	</p>
+	<script>
+		const x = 10;
+		document.write("전역x1: " + x + "<br>");
+		{
+			const x = 2;
+			document.write("지역x: " + x + "<br>");
+		}
+		document.write("전역x2: " + x + "<br>");
+		document.getElementById("demo").innerHTML = x;
+	</script>
+</body>
+</html>

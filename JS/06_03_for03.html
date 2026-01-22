@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>제목</title>
+	<script>
+		// 입력 예시: 10,5,100,55,25
+		var data = prompt("숫자 5개 입력(,로 구분)", "0"); //초기값 0, 취소하면 null, 입려창의 값은 문자열로 반환
+		console.log("입력된 데이터: " + data);
+
+		/*
+		.split("구분자") 메서드예시
+		- 문자열을 구분자를 기준으로 분리하여 배열로 반환
+		- 구분자가 없으면 전체 문자열을 요소로 갖는 길이 1짜리 배열 반환
+		예시:	
+		var str = "apple,banana,cherry";
+		var arr = str.split(","); //["apple", "banana", "cherry"]	
+
+		-자바와 자바스트립트의 split() 메서드 차이점
+		1. 자바의 split() 메서드
+		   - 구분자가 연속으로 나오면 빈 문자열("")도 배열의 요소로 포함
+		   - 예: "a,,b,c".split(",") = ["a", "", "b", "c"]	
+		2. 자바스크립트의 split() 메서드
+		   - 구분자가 연속으로 나오면 빈 문자열("")은 배열의 요소로 포함하지 않음
+		   - 예: "a,,b,c".split(",") = ["a", "b", "c"]	
+
+
+		- 문자열을 숫자로 변환하는 방법
+		1. Number(문자열) 함수 사용
+		   - 문자열 전체가 숫자로 변환될 수 있어야 함
+		   - 예: Number("100") = 100
+		   - 예: Number("100원") = NaN
+		2. parseInt(문자열) 함수 사용
+		   - 문자열의 앞부분부터 숫자로 변환 가능한 부분까지만 숫자로 변환
+		   - 예: parseInt("100원") = 100
+		   - 예: parseInt("원100") = NaN
+
+
+
+		*/
+		var arr = data.split(","); //문자열을 ,로 분리하여 배열로 반환
+		var max = arr[0];
+		var min = arr[0];
+		console.log('min: ' + min + ', max: ' + max);
+
+		for (var i = 0; i < arr.length; i++) {
+			console.log('arr[' + i + ']요소: ' + arr[i]);
+
+			if (parseInt(max) < parseInt(arr[i])) max = arr[i]; //문자열을 숫자로 변환하여 비교
+			console.log(`max[${i}]${max}, arr[${i}]${arr[i]}`);
+
+			if (parseInt(min) > parseInt(arr[i])) min = arr[i]; //문자열을 숫자로 변환하여 비교	
+			console.log(`min[${i}]${min}, arr[${i}]${arr[i]}`);
+		}
+		document.write(`최대값: ${max}, 최소값: ${min}`);
+
+	</script>
+</head>
+<body>
+	<hr>
+
+	<input type="button" onclick="func1();" value="Number 결과">
+	<input type="button" onclick="func2();" value="parseInt 결과">
+
+	<script>
+
+
+		function func1() {
+			var won1 = Number("1000원");
+			var dollar1 = Number("1$");
+			alert(won1 + " : " + dollar1);
+		}
+
+		function func2() {
+			//원1000원 (X) , 원1000 (X) , 1000원100 (1000)
+			var won2 = parseInt("1000원100"); //1000만 추출
+			var dollar2 = parseInt("1$");
+			alert(won2 + " : " + dollar2);
+		}
+	</script>
+
+
+
+
+</body>
+
+</html>
