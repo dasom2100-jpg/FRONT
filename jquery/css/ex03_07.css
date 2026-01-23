@@ -1,0 +1,22 @@
+	#inner_4 p {
+	    display: none;
+	}
+
+	section {
+	    margin: 20px 0;
+	}
+
+	.inpstyle {
+	    box-sizing: border-box;
+	    height: 50px;
+	    line-height: 50px;
+	    vertical-align: bottom;
+	}
+
+	input[type=button].inpstyle {
+	    width: 100px;
+	}
+
+	input[type=text].inpstyle {
+	    width: 300px;
+	}

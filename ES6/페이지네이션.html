@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>게시판</title>
+    <style>
+        .post {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .pagination {
+            margin: 20px 0;
+        }
+        .pagination a {
+            padding: 5px 10px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            color: #333;
+        }
+        .pagination a.active {
+            background: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>게시판</h1>
+    <div id="posts"></div>
+    <div class="pagination" id="pagination"></div>
+
+    <script>
+        // 가상 게시글 데이터 (100개)
+        const allPosts = [];
+        for (let i = 1; i <= 100; i++) {
+            allPosts.push({
+                id: i,
+                title: `게시글 ${i}`,
+                content: `이것은 ${i}번째 게시글 내용입니다.`,
+                author: `작성자${i % 10}`
+            });
+        }
+        
+        const postsPerPage = 10;  // 페이지당 게시글 수
+        
+        // URL에서 현재 페이지 가져오기
+        function getCurrentPage() {
+            const params = new URLSearchParams(window.location.search);
+            const page = parseInt(params.get('page')) || 1;
+            return page;
+        }
+        
+        // 게시글 표시
+        function displayPosts(page) {
+            const startIndex = (page - 1) * postsPerPage;
+            const endIndex = startIndex + postsPerPage;
+            const postsToShow = allPosts.slice(startIndex, endIndex);
+            
+            const postsDiv = document.getElementById('posts');
+            postsDiv.innerHTML = postsToShow.map(post => `
+                <div class="post">
+                    <h3>${post.title}</h3>
+                    <p>${post.content}</p>
+                    <small>작성자: ${post.author}</small>
+                </div>
+            `).join('');
+            
+            console.log(`페이지 ${page}: ${startIndex + 1}~${endIndex} 게시글 표시`);
+        }
+        
+        // 페이지네이션 버튼 생성
+        function createPagination(currentPage) {
+            const totalPages = Math.ceil(allPosts.length / postsPerPage);
+            const paginationDiv = document.getElementById('pagination');
+            
+            let html = '';
+            
+            // 이전 버튼
+            if (currentPage > 1) {
+                html += `<a href="?page=${currentPage - 1}">이전</a>`;
+            }
+            
+            // 페이지 번호
+            for (let i = 1; i <= totalPages; i++) {
+                const active = i === currentPage ? 'active' : '';
+                html += `<a href="?page=${i}" class="${active}">${i}</a>`;
+            }
+            
+            // 다음 버튼
+            if (currentPage < totalPages) {
+                html += `<a href="?page=${currentPage + 1}">다음</a>`;
+            }
+            
+            paginationDiv.innerHTML = html;
+        }
+        
+        // 페이지 로드 시 실행
+        window.onload = function() {
+            const currentPage = getCurrentPage();
+            displayPosts(currentPage);
+            createPagination(currentPage);
+        };
+    </script>
+</body>
+</html>

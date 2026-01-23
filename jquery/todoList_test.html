@@ -1,0 +1,260 @@
+
+<body>
+    <!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동적 요소 예제 - 할 일 목록</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            padding: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        #todoInput {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        #todoInput:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn-add {
+            padding: 12px 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .btn-add:hover {
+            background: #5568d3;
+        }
+
+        #todoList {
+            list-style: none;
+        }
+
+        .todo-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .todo-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .todo-item.completed {
+            background: #d4edda;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .todo-text {
+            flex: 1;
+            font-size: 16px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 5px;
+        }
+
+        .btn-complete, .btn-delete {
+            padding: 5px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .btn-complete {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-complete:hover {
+            background: #218838;
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #c82333;
+        }
+
+        .stats {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 할 일 목록</h1>
+        
+        <div class="input-group">
+            <input type="text" id="todoInput" placeholder="할 일을 입력하세요">
+            <button class="btn-add">추가</button>
+        </div>
+
+        <ul id="todoList">
+            <!-- 동적으로 추가될 항목들 -->
+        </ul>
+
+        <div class="stats">
+            전체: <span id="totalCount">0</span>개 | 
+            완료: <span id="completedCount">0</span>개 | 
+            남은 항목: <span id="remainingCount">0</span>개
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            let todoId = 0; // 각 항목의 고유 ID
+
+            // ==========================================
+            // 1. 할 일 추가 (동적 요소 생성)
+            // ==========================================
+            function addTodo() {
+                const todoText = $('#todoInput').val().trim();
+                
+                if (todoText === '') {
+                    alert('할 일을 입력하세요!');
+                    return;
+                }
+
+                // 동적으로 HTML 생성
+                const todoHTML = `
+                    <li class="todo-item" data-id="${todoId}">
+                        <span class="todo-text">${todoText}</span>
+                        <div class="btn-group">
+                            <button class="btn-complete">완료</button>
+                            <button class="btn-delete">삭제</button>
+                        </div>
+                    </li>
+                `;
+
+                // DOM에 추가
+                $('#todoList').append(todoHTML);
+                $('#todoInput').val(''); // 입력창 비우기
+                todoId++;
+                
+                updateStats(); // 통계 업데이트
+            }
+
+            // 추가 버튼 클릭
+            $('.btn-add').click(addTodo);
+
+            // Enter 키로도 추가 가능
+            $('#todoInput').keypress(function(e) {
+                if (e.which === 13) { // Enter 키
+                    addTodo();
+                }
+            });
+
+            // ==========================================
+            // 2. 동적 이벤트 위임 - 완료 버튼
+            // ==========================================
+            // ❌ 이렇게 하면 안 됨!
+            // $('.btn-complete').click(function() { ... }); 
+            
+            // ✅ 올바른 방법: 이벤트 위임
+            $(document).on('click', '.btn-complete', function() {
+                $(this).closest('.todo-item').toggleClass('completed');
+                updateStats();
+            });
+
+            // ==========================================
+            // 3. 동적 이벤트 위임 - 삭제 버튼
+            // ==========================================
+            $(document).on('click', '.btn-delete', function() {
+                // 페이드아웃 애니메이션 후 삭제
+                $(this).closest('.todo-item').fadeOut(300, function() {
+                    $(this).remove();
+                    updateStats();
+                });
+            });
+
+            // ==========================================
+            // 4. 통계 업데이트
+            // ==========================================
+            function updateStats() {
+                const total = $('.todo-item').length;
+                const completed = $('.todo-item.completed').length;
+                const remaining = total - completed;
+
+                $('#totalCount').text(total);
+                $('#completedCount').text(completed);
+                $('#remainingCount').text(remaining);
+            }
+        });
+    </script>
+</body>
+</html>

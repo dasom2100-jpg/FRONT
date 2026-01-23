@@ -80,8 +80,9 @@
         // jQuery 스타일 체이닝 함수 구현
         // ==========================================
         function $(selector) {
+            console.log('selector: ', selector);
             const elements = document.querySelectorAll(selector);
-            
+            console.log('elements: ', elements);
             return {
                 // CSS 스타일 설정
                 css: function(property, value) {
