@@ -7,7 +7,7 @@
     /* 기본 색상 */
     --color-primary: #667eea;
     --color-focus: #109fff;
-    --color-success: #83b9d2;
+    --color-success: #83c2d2;
     --color-danger: #e74c3c;
     --color-danger01: #66050f;
 
@@ -323,9 +323,6 @@ input[type="date"] {
 //  반응형 @media 
 // ============================================*/
 @media (max-width: 600px) {
-    .container {
-        padding: 30px 20px;
-    }
 
     h1 {
         font-size: 24px;
@@ -342,11 +339,6 @@ input[type="date"] {
     }
 
     /* subpage */
-
-    .sub_container {
-        padding: 40px 25px;
-    }
-
     h1 {
         font-size: 24px;
     }

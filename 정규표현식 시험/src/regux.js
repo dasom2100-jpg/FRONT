@@ -1,4 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
+// document.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('load', function() {
+    
             // ============================================
             // 정규식 패턴 객체
             // ============================================
@@ -13,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // ============================================
             // 추가 검증 함수
-            // ============================================
+            //============================================
             const validators = {
                 upw: function(value) {
                     const hasUpperCase = /[A-Z]/.test(value);
@@ -24,6 +26,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     return (value.match(/@/g) || []).length === 1;
                 }
             };
+
+             // 전화번호 입력 제한
+            const telInput = document.getElementById('utel');
+            
+            telInput.addEventListener('input', function() {
+                this.value = this.value.replace(/\D/g, '').substring(0, 11);
+            });
 
             // ============================================
             // 유효성 검사 함수
@@ -84,11 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
 
-            // 전화번호 입력 제한
-            const telInput = document.getElementById('utel');
-            telInput.addEventListener('input', function() {
-                this.value = this.value.replace(/\D/g, '').substring(0, 11);
-            });
+           
 
             // ============================================
             // 폼 제출 검증
