@@ -1,0 +1,370 @@
+@charset "utf-8";
+
+/* ============================================
+//  공통 선언
+// ============================================*/
+:root {
+    /* 기본 색상 */
+    --color-primary: #667eea;
+    --color-focus: #109fff;
+    --color-success: #83b9d2;
+    --color-danger: #e74c3c;
+    --color-danger01: #66050f;
+
+    /* 그레이 스케일 */
+    --color-white: #ffffff;
+    --color-gray-500: light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4));
+    --color-gray-600: #fff5f5;
+    --color-gray-700: #495057;
+    --color-gray-800: #343a40;
+    --color-gray-900: #212529;
+    --color-black: #000000;
+
+    /* 텍스트 색상 */
+    --text-primary: var(--color-gray-900);
+    --text-secondary: var(--color-gray-600);
+    --text-muted: var(--color-gray-500);
+    --default-color: #403655;
+    --heading-color: #227a92;
+    --accent-color: #204e71;
+    --default-font: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', "Roboto";
+    /* 백그라운드 색상 */
+    --background:
+        radial-gradient(1200px circle at 12% 18%, rgba(111, 99, 255, 0.16), transparent),
+        radial-gradient(900px circle at 82% 16%, rgba(45, 212, 191, 0.12), transparent),
+        linear-gradient(135deg, #0b1022 0%, #109fff 40%, #0c1124 100%);
+    --background-btn: linear-gradient(135deg, #109fff 10%, #764ba2 100%);
+
+    /* input 설정 */
+    --inputgreen-color: var(--color-gray-500);
+    --inputred-color: var(--color-gray-600);
+}
+
+/* Smooth scroll */
+:root {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============================================
+//  회원가입
+// ============================================*/
+
+body {
+    color: var(--default-color);
+    background: var(--background);
+    font-family: var(--default-font);
+    font-family: 'Malgun Gothic', '맑은 고딕', Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: var(--color-white);
+    width: 100%;
+    max-width: 600px;
+    padding: 0 40px 40px;
+    margin-top: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    text-align: center;
+    margin: -26px -41px 30px -41px;
+    border-radius: 16px 17px 0 0;
+    padding: 15px 0 20px 0;
+    color: var(--color-white);
+    font-size: 28px;
+    font-weight: 600;
+    background: var(--background);
+    ;
+    box-shadow: 0px 0px 2px 0px #83b9d2;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.required {
+    color: var(--color-danger);
+    margin-left: 3px;
+    font-size: smaller;
+}
+
+input.selInput {
+    width: 100%;
+    height: 45px;
+    padding: 0 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input.selInput:focus {
+    border-color: var(--color-focus);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+input.selInput.success {
+    border-color: var(--color-success);
+    background-color: var(--inputgreen-color);
+}
+
+input.selInput.error {
+    border-color: var(--color-danger);
+    background-color: var(--inputred-color);
+}
+
+input.selInput::placeholder {
+    color: #aaa;
+}
+
+input[type="date"] {
+    cursor: pointer;
+}
+
+.errMsg {
+    display: none;
+    color: var(--color-danger);
+    font-size: 12px;
+    margin-top: 5px;
+    padding-left: 5px;
+}
+
+.btn-submit {
+    width: 100%;
+    height: 50px;
+    background: var(--background-btn);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 9px 0px #7364f8;
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+//  회원가입- sub_page
+// ============================================*/
+
+.sub_container {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    padding: 0 40px 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: slideIn 0.5s ease-out;
+}
+.success-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #28ad28 0%, #20c997 100%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    color: white;
+    margin-bottom: 30px;
+    animation: scaleIn 0.5s ease-out 0.3s both;
+}
+
+
+    /* 애니메이션 @keyframes */
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    @keyframes scaleIn {
+        from {
+            transform: scale(0);
+        }
+
+        to {
+            transform: scale(1);
+        }
+    }
+
+.welcome-message {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.user-info {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    color: #666;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.info-value {
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.info-value.highlight {
+    color: #667eea;
+    font-size: 18px;
+}
+
+.btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.error-page {
+    text-align: center;
+}
+
+.error-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-danger) 0%, var(--color-danger01) 100%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.error-page h2 {
+    color: var(--color-danger);
+    font-size: 24px;
+    margin: 40px 15px;
+}
+
+.error-page p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+/* ============================================
+//  반응형 @media 
+// ============================================*/
+@media (max-width: 600px) {
+    .container {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    input.selInput {
+        height: 42px;
+        font-size: 13px;
+    }
+
+    .btn-submit {
+        height: 48px;
+        font-size: 15px;
+    }
+
+    /* subpage */
+
+    .sub_container {
+        padding: 40px 25px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .success-icon,
+    .error-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 40px;
+    }
+
+    .info-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .info-value {
+        text-align: left;
+    }
+}

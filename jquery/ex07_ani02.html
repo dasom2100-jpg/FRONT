@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!--
+https://releases.jquery.com/ui/ 사이트로 이동
+jQuery UI 1.13 내용까지 이동 후 jQuery UI 1.13.3: uncompressed, minified 중
+선택하여 src부분만 가져오기
+-->
+<script src="http://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
+    <style>
+      #region {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+        margin: auto;
+        border: 1px solid #333;
+      }
+
+      #images {
+        width: 400px;
+        height: 200px;
+      }
+
+      #images a img {
+        width: 200px;
+        height: 200px;
+        border: 0;
+        position: relative;
+      }
+      #direction {
+        width: 350px;
+        margin: auto;
+        overflow: auto;
+      }
+      .leftbtn {
+        float: left;
+      }
+      .rightbtn {
+        float: right;
+      }
+
+      #divPa {
+        position: relative;
+        height: 300px;
+        border: 1px solid #000;
+      }
+
+      #divCh {
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        width: 50px;
+        height: 50px;
+        border: 1px solid #000;
+      }
+    </style>
+    <script>
+      $(function () {
+        $(".leftbtn").click(function (event) {
+          $("#images").stop().animate({ marginLeft: -200 }, 1000);
+        });
+        $(".rightbtn").click(function (event) {
+          $("#images").stop().animate({ marginLeft: 0 }, 1000);
+        });
+        $("#divCh").click(function () {
+          $("#divCh")
+            .stop()
+            .animate(
+              { "background-color": "red", top: 50, left: 400 }, 
+            1000)
+            .animate(
+              { "background-color": "yellow", top: "150px", left: "400px" },
+              1000
+            )
+            .animate(
+              { "background-color": "blue", top: "150px", left: "50px" },
+              1000
+            )
+            .animate(
+              { "background-color": "green", top: "50px", left: "50px" },
+              1000
+            );
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="region">
+      <div id="images">
+        <a href="#"><img src="./../img/cute_dog.jpg" /></a
+        ><a href="#"><img src="./../img/namu.png" /></a>
+      </div>
+    </div>
+    <div id="direction">
+      <button class="leftbtn">&lt;</button>
+      <button class="rightbtn">&gt;</button>
+      <div style="clear: both;"></div>
+    </div>
+    
+    <br /><br />
+    <div id="divPa">
+      <div id="divCh"></div>
+    </div>
+  </body>
+</html>

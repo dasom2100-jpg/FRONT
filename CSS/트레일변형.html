@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<style>
+body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #1e1e1e;
+  margin: 0;
+  gap: 50px;
+  padding: 50px;
+}
+
+.example-box {
+  position: relative;
+  width: 250px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 18px;
+}
+
+/* 예제 1: 네온 효과 */
+.neon-box svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.neon-line {
+  fill: none;
+  stroke: #0ff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 800;
+  stroke-dashoffset: 800;
+  animation: drawNeon 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px #0ff) drop-shadow(0 0 20px #0ff);
+}
+
+@keyframes drawNeon {
+  0%, 100% {
+    stroke-dashoffset: 800;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* 예제 2: 점선 효과 */
+.dashed-box svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.dashed-line {
+  fill: none;
+  stroke: #ff006e;
+  stroke-width: 3;
+  stroke-dasharray: 10 5;
+  stroke-dashoffset: 1000;
+  animation: drawDashed 2s linear infinite;
+}
+
+@keyframes drawDashed {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* 예제 3: 그라데이션 선 */
+.gradient-box svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.gradient-line {
+  fill: none;
+  stroke: url(#gradient);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: drawGradient 3s ease-in-out forwards;
+}
+
+@keyframes drawGradient {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* 예제 4: 양방향 그리기 */
+.bidirectional-box svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bidirectional-line {
+  fill: none;
+  stroke: #ffd700;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 450;
+  stroke-dashoffset: 450;
+  animation: drawBoth 2s ease-in-out infinite alternate;
+}
+
+@keyframes drawBoth {
+  from {
+    stroke-dashoffset: 450;
+  }
+  to {
+    stroke-dashoffset: -450;
+  }
+}
+
+/* 예제 5: 모서리부터 그리기 */
+.corner-box {
+  border: 3px solid transparent;
+  background: 
+    linear-gradient(#1e1e1e, #1e1e1e) padding-box,
+    linear-gradient(90deg, #00d9ff, #7b68ee) border-box;
+  
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+}
+
+.corner-box::before,
+.corner-box::after {
+  content: "";
+  position: absolute;
+  background-color: #1e1e1e;
+}
+
+.corner-box::before {
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  height: calc(100% - 6px);
+  animation: revealVertical 1.5s ease-in-out forwards;
+}
+
+.corner-box::after {
+  top: 3px;
+  left: 3px;
+  bottom: 3px;
+  width: calc(100% - 6px);
+  animation: revealHorizontal 1.5s ease-in-out forwards;
+}
+
+@keyframes revealVertical {
+  from {
+    height: calc(100% - 6px);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes revealHorizontal {
+  from {
+    width: calc(100% - 6px);
+  }
+  to {
+    width: 0;
+  }
+}
+
+/* 예제 6: 연속 루프 */
+.loop-box svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.loop-line {
+  fill: none;
+  stroke: #00ff88;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: drawLoop 2.5s ease-in-out infinite;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes drawLoop {
+  0% {
+    stroke-dashoffset: 900;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+</style>
+</head>
+<body>
+  <!-- 예제 1: 네온 효과 -->
+  <div class="example-box neon-box">
+    <svg viewBox="0 0 250 150">
+      <rect class="neon-line" 
+            x="5" y="5" 
+            width="240" height="140" 
+            rx="10"/>
+    </svg>
+    <span>Neon Effect</span>
+  </div>
+
+  <!-- 예제 2: 점선 효과 -->
+  <div class="example-box dashed-box">
+    <svg viewBox="0 0 250 150">
+      <rect class="dashed-line" 
+            x="5" y="5" 
+            width="240" height="140" 
+            rx="5"/>
+    </svg>
+    <span>Dashed Line</span>
+  </div>
+
+  <!-- 예제 3: 그라데이션 -->
+  <div class="example-box gradient-box">
+    <svg viewBox="0 0 250 150">
+      <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#ff006e;stop-opacity:1" />
+          <stop offset="50%" style="stop-color:#ffd700;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#00d9ff;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <rect class="gradient-line" 
+            x="5" y="5" 
+            width="240" height="140" 
+            rx="10"/>
+    </svg>
+    <span>Gradient</span>
+  </div>
+
+  <!-- 예제 4: 양방향 -->
+  <div class="example-box bidirectional-box">
+    <svg viewBox="0 0 250 150">
+      <rect class="bidirectional-line" 
+            x="5" y="5" 
+            width="240" height="140" 
+            rx="5"/>
+    </svg>
+    <span>Bidirectional</span>
+  </div>
+
+  <!-- 예제 5: 모서리부터 -->
+  <div class="example-box corner-box">
+    <span>Corner Start</span>
+  </div>
+
+  <!-- 예제 6: 연속 루프 -->
+  <div class="example-box loop-box">
+    <svg viewBox="0 0 250 150">
+      <rect class="loop-line" 
+            x="5" y="5" 
+            width="240" height="140" 
+            rx="10"/>
+    </svg>
+    <span>Continuous Loop</span>
+  </div>
+</body>
+</html>

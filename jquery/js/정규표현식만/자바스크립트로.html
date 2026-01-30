@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        form>button.btn.btn-default { background-color: #0d3d5f; color: #fff }
+        form>button.btn.btn-default:hover { background-color: #5aafeb; color: #fff }
+        .form-group > input.form-control.inputElements {margin-bottom: 20px;}
+    </style>
+
+   <script> 
+window.onload = function() {
+    let elements = document.querySelectorAll(".inputElements");
+    // console.log(elements);
+
+    // for문 버전
+    // for (let i = 0; i < elements.length; i++) {
+    //     let element_value = elements[i].value;
+    //     console.log(i, '번째: element_value:', element_value);
+    // }
+
+    // forEach 버전
+    elements.forEach(function(obj, idx) {
+        //let element_value = obj.value;   // 변수명 지정
+         obj.addEventListener("blur",function(){
+            console.log('블러발생');
+        });
+
+
+    });
+}
+</script>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>회원가입</h2>
+        <form action="" >
+            <div class="form-group">
+            <input type="text" class="form-control inputElements" id="uid" value="admin"  placeholder="아이디" name="uid">
+            <input type="password" class="form-control inputElements" id="upw" value="1234" placeholder="비밀번호" name="upw">
+            <input type="text" class="form-control inputElements" id="unm" value="관리자" placeholder="이름" name="unm">
+
+            </div>
+
+
+
+            <button type="submit" class="btn btn-default form-control">제출</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

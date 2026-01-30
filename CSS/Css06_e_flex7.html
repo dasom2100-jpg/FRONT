@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        [id^=optDiv] {
+            display: flex;
+            padding: 0;
+            list-style: none;
+            width: 800px;
+            height: 50px;
+            border: 1px solid #000;
+            margin: 20px auto;
+            max-width: 100%;
+        }
+
+        #optDiv1>.opt,
+        #optDiv3>.opt {
+            background: yellow;
+        }
+
+        /* flex-shrink : 공간 부족시 줄어드는 수치를 조절
+        flex-shrink 는 flex-grow 와 반대로 부모 요소가 flex 일때, 그 안에 속한 요소들을 상대적으로 줄여주는 효과를 가진다.
+        기본값: 1 => 줄어듦
+        0 =>  절대 줄어들지 않음
+        수치 : 줄어드는 비율
+        */
+        #optDiv2>.opt {
+            background: yellow;
+            width: 200px;
+        }
+
+        #optDiv2>.opt:nth-child(2) {
+            flex-shrink: 2;
+        }
+
+        .opt:nth-of-type(2n) {
+            background-color: red !important;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="listContainer">
+        <div id="optDiv1">
+            <div class="opt">거북이</div>
+            <div class="opt">호랑이</div>
+            <div class="opt">나비</div>
+            <div class="opt">청설모</div>
+        </div>
+
+        <div id="optDiv2">
+            <div class="opt">거북이</div>
+            <div class="opt">호랑이</div>
+            <div class="opt">나비</div>
+            <div class="opt">청설모</div>
+        </div>
+
+    </div>
+</body>
+
+</html>

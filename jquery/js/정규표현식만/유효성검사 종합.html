@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>    
+
+
+
+
+    
+// 회원가입 폼 유효성 검사 종합
+class Validator {
+    // test() 사용 - 간단한 검증
+    static isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    static isValidPhone(phone) {
+        return /^010-\d{4}-\d{4}$/.test(phone);
+    }
+
+    // match() 사용 - 데이터 추출
+    static extractNumbers(text) {
+        return text.match(/\d+/g) || [];
+    }
+
+    // replace() 사용 - 포맷팅
+    static formatPhone(phone) {
+        const cleaned = phone.replace(/\D/g, '');
+        return cleaned.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+    }
+
+    // split() 사용 - 파싱
+    static parseTags(tagString) {
+        return tagString.split(/[,\s]+/).filter(tag => tag.length > 0);
+    }
+
+    // search() 사용 - 위치 찾기
+    static findFirstSpecialChar(text) {
+        return text.search(/[^a-zA-Z0-9\s]/);
+    }
+
+    // exec() 사용 - 상세 분석
+    static parseDate(dateString) {
+        const regex = /(\d{4})-(\d{2})-(\d{2})/;
+        const match = regex.exec(dateString);
+        
+        if (match) {
+            return {
+                full: match[0],
+                year: match[1],
+                month: match[2],
+                day: match[3]
+            };
+        }
+        return null;
+    }
+}
+
+// 사용 예시
+console.log(Validator.isValidEmail("honey@test.com"));  // true
+console.log(Validator.formatPhone("01012345678"));       // "010-1234-5678"
+console.log(Validator.extractNumbers("10개와 20개"));    // ['10', '20']
+console.log(Validator.parseTags("react, vue, angular")); // ['react', 'vue', 'angular']
+console.log(Validator.parseDate("2024-01-15"));          
+// {full: '2024-01-15', year: '2024', month: '01', day: '15'}
+
+    </script>
+</body>
+
+
+
+
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가입 완료</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .welcome-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 600px;
+            padding: 50px 40px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-icon {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .success-icon .checkmark {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: white;
+            animation: scaleIn 0.5s ease-out 0.3s both;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .welcome-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .welcome-header h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .welcome-header p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .user-info-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .info-section {
+            margin-bottom: 25px;
+        }
+
+        .info-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-section h3 {
+            color: #667eea;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #666;
+            font-size: 14px;
+            font-weight: 600;
+            min-width: 120px;
+        }
+
+        .info-value {
+            color: #333;
+            font-size: 15px;
+            text-align: right;
+            flex: 1;
+            word-break: break-all;
+        }
+
+        .info-value.highlight {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge.info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f9ff;
+        }
+
+        .additional-info {
+            background: #fff9e6;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .additional-info h4 {
+            color: #856404;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .additional-info p {
+            color: #856404;
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .no-data h2 {
+            color: #e74c3c;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .no-data p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .welcome-container {
+                padding: 40px 25px;
+            }
+
+            .welcome-header h1 {
+                font-size: 24px;
+            }
+
+            .info-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+            .info-label {
+                min-width: auto;
+            }
+
+            .info-value {
+                text-align: left;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+
+        /* 프린트용 스타일 */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .welcome-container {
+                box-shadow: none;
+                padding: 20px;
+            }
+
+            .btn-group {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <div id="contentArea">
+            <!-- JavaScript로 동적 생성 -->
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // localStorage에서 데이터 가져오기
+            const signupDataStr = localStorage.getItem('signupData');
+            
+            if (!signupDataStr) {
+                // 데이터가 없을 경우
+                $('#contentArea').html(`
+                    <div class="no-data">
+                        <div class="success-icon">
+                            <div class="checkmark">⚠️</div>
+                        </div>
+                        <h2>회원 정보를 찾을 수 없습니다</h2>
+                        <p>회원가입 페이지에서 먼저 가입을 진행해주세요.</p>
+                        <div class="btn-group">
+                            <a href="signup.html" class="btn btn-primary">회원가입 하러 가기</a>
+                        </div>
+                    </div>
+                `);
+                return;
+            }
+
+            // JSON 파싱
+            const userData = JSON.parse(signupDataStr);
+            
+            // 나이 계산
+            function calculateAge(birthdate) {
+                const today = new Date();
+                const birthDate = new Date(birthdate);
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const monthDiff = today.getMonth() - birthDate.getMonth();
+                
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                return age;
+            }
+
+            const age = calculateAge(userData.birthdate);
+
+            // HTML 생성
+            const html = `
+                <div class="success-icon">
+                    <div class="checkmark">✓</div>
+                </div>
+
+                <div class="welcome-header">
+                    <h1>🎉 환영합니다, ${userData.userName}님!</h1>
+                    <p>회원가입이 성공적으로 완료되었습니다.<br>입력하신 정보를 확인해주세요.</p>
+                </div>
+
+                <div class="additional-info">
+                    <h4>📧 인증 메일 발송</h4>
+                    <p>${userData.email}로 인증 메일이 발송되었습니다. 메일함을 확인해주세요.</p>
+                </div>
+
+                <div class="user-info-card">
+                    <div class="info-section">
+                        <h3>🔐 계정 정보</h3>
+                        <div class="info-row">
+                            <span class="info-label">아이디</span>
+                            <span class="info-value highlight">${userData.userId}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">가입일시</span>
+                            <span class="info-value">${userData.registrationDate}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">계정상태</span>
+                            <span class="info-value">
+                                <span class="badge success">활성화</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>👤 개인 정보</h3>
+                        <div class="info-row">
+                            <span class="info-label">이름</span>
+                            <span class="info-value">${userData.userName}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">생년월일</span>
+                            <span class="info-value">${userData.birthdate} (만 ${age}세)</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">이메일</span>
+                            <span class="info-value">${userData.email}</span>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>📱 연락처 정보</h3>
+                        <div class="info-row">
+                            <span class="info-label">통신사</span>
+                            <span class="info-value">${userData.carrier}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">전화번호</span>
+                            <span class="info-value">${userData.phone}</span>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>📬 마케팅 수신 동의</h3>
+                        <div class="info-row">
+                            <span class="info-label">수신 동의 여부</span>
+                            <span class="info-value">
+                                <span class="badge ${userData.agreeMarketing ? 'success' : 'info'}">
+                                    ${userData.agreeMarketing ? '동의함' : '동의안함'}
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-secondary" id="printBtn">📄 정보 출력</button>
+                    <button class="btn btn-primary" id="goHomeBtn">🏠 메인으로</button>
+                </div>
+            `;
+
+            $('#contentArea').html(html);
+
+            // 이벤트 핸들러
+            $('#printBtn').on('click', function() {
+                window.print();
+            });
+
+            $('#goHomeBtn').on('click', function() {
+                // 실제로는 메인 페이지로 이동
+                if (confirm('메인 페이지로 이동하시겠습니까?\n(회원가입 정보는 삭제됩니다)')) {
+                    localStorage.removeItem('signupData');
+                    // window.location.href = 'index.html';
+                    window.location.href = 'signup.html'; // 테스트용
+                } 
+            });
+
+            // 페이지 로드 시 애니메이션
+            $('.user-info-card').css({
+                'opacity': '0',
+                'transform': 'translateY(20px)'
+            }).animate({
+                opacity: 1
+            }, 500, function() {
+                $(this).css('transform', 'translateY(0)');
+            });
+        });
+    </script>
+</body>
+</html>

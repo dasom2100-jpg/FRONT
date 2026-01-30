@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        button.form-control.btn.btn-default {
+            background-color: rgb(1, 148, 148);
+            color: #fff;
+        }
+
+        .errMsg {
+            display: none;
+        }
+    </style>
+    <script>
+        $(function () {
+            $('input.selInput').on('blur', function () {
+                let idnm = this.getAttribute('id');
+                let regx;
+                switch (idnm) {
+                    case 'uid':
+                        //첫글자영어로시작 => ^[a-zA-Z]
+                        //(\w|\W) => 2번째글자부터 영어,숫자,특수문자 중에 입력
+                        //{3,19}$ => 2번째글자부터 3자이상 19자이내로 입력
+                        // $ => 정규패턴의 끝을 의미하면서, 글자수 제한에 반드시 붙여야 함.
+                        // 글자수 제한이 없는 경우는 $생략 가능
+                        regx = /^[a-zA-Z](\w|\W){3,19}$/;
+                        // let regx = /^[a-zA-Z][\w\W]{3,19}$/;
+                        break;
+                    case 'upw':
+                        regx = /^[a-zA-Z](\w|\W){3,19}$/;
+                        break;
+                    default: console.log('예정');
+                }
+                //regx.test(this.value)
+                //regx(정규패턴식)과 this.value(입력한 값을) 확인하여
+                //test() => 일치하면 true반환, 일치하지 않으면 false반환
+                if (regx.test(this.value)) {
+                    // 일치후에 처리해야 하는 추가조건 기술
+                    // 아이디, 비번 - 공백 없이 처리되도록 조건 추가 => 공백있는지 체크(\s)
+                    if ((idnm === 'uid' || idnm === 'upw') && /[\s]+/.test(this.value)) { // 공백이 존재하면 true반환
+                        console.log('공백있어요.');
+                        //여기에서 에러메세지 처리
+                        $(this).next().show();
+                    } else {
+                        $(this).next().hide();
+                    }
+
+                    // 비번 - 반드시 영어대문자 1개이상(필수) => [A-Z]+
+                    // 특수문자 1개이상(필수) => [\W\_]+  
+                    // 숫자 1개이상(필수) => [0-9]+
+                    // 정규식.test(비교할문자열값)
+                    // 비교할문자열값.search(정규식) => 존재하면 인덱스번호반환, 없으면 -1 반환
+                    
+
+                    if (idnm === 'upw') {
+                        console.log('0 : ', idnm === 'upw');
+                        console.log('1 : ', this.value.search(/[A-Z]+/));
+                        console.log('2 : ', this.value.search(/[\W\_]+/));
+                        console.log('3 : ', this.value.search(/[0-9]+/));
+                        if (!(this.value.search(/[A-Z]+/) > -1 && this.value.search(/[\W\_]+/) > -1 && this.value.search(/[0-9]+/) > -1)) {
+                            console.log('에러메세지 출력하도록 처리2');
+                            $(this).next().show();
+                        } else {
+                            $(this).next().hide();
+                        }
+                    }
+
+
+                } else {
+                    console.log('에러메세지 출력하도록 처리3');
+                    $(this).next().show();
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+
+        <h2>회원가입</h2>
+        <form action="">
+            <div class="form-group">
+                <input type="text" class="form-control selInput" id="uid" placeholder="아이디" name="uid">
+                <p class="errMsg">아이디 에러메세지</p>
+                <input type="password" class="form-control selInput" id="upw" placeholder="비번" name="upw">
+                <p class="errMsg">비번 에러메세지</p>
+            </div>
+
+            <button type="submit" class="form-control btn btn-default">회원가입</button>
+        </form>
+    </div>
+</body>
+
+</html>

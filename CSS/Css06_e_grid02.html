@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin : 20px auto;
+            display: grid;
+            /* 바둑판 구역별 이름 붙이기(이름 생성)*/
+            grid: repeat(3, 300px) / auto-flow 1fr;
+            /*dense : 빈구역이 있으면 채우라는 속성.*/
+            grid-auto-flow: row dense; 
+            grid-template-areas: 
+             "a b b"
+             "c d d"
+             "c d d";
+            gap : 10px;
+        }
+
+        .container>div {
+            width: 100%;
+            height: 100%;
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+        }
+        #a { grid-area: a; background-color: #f00;}
+        #b { grid-area: b; background-color: #0f0;}
+        #c { grid-area: c; background-color: #00f;}
+        #d { grid-area: d; background-color: #ff0;}
+        /* #e { grid-area: span 3; background-color: rgb(154, 0, 133);} */
+        /*grid-area: row-start/column-start/row-end(지정값-1)/column-end(지정값-1)*/
+        #e { grid-area: 1/1/4/2; background-color: rgb(154, 0, 133);}
+        /* #f { grid-area: d; background-color: #ff0;} */
+        #f { grid-area: 3 / span 2; background-color: #ff0;}
+        .g { background-color: #f00;}
+        .g4 { grid-area: 2/ span 2; background-color: #0f0;}
+        /* .g4 { grid-area: 4/ span 3; background-color: #0f0;} */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="c">1</div>
+        <div id="a">2</div>
+        <div id="b">3</div>
+        <div id="d">4</div>
+    </div>
+    <div class="container">
+        <div id="e">1</div>
+        <div id="f">2</div>
+        <div class="g">3</div>
+        <div class="g4">4</div>
+        <div class="g">5</div>
+        <div class="g">6</div>
+    </div>
+</body>
+
+</html>

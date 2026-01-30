@@ -1,0 +1,65 @@
+<style>
+.particle-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background: radial-gradient(circle, #1a1a2e, #0f0f1e);
+  overflow: hidden;
+}
+
+.particle-mover {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #ff006e;
+  border-radius: 50%;
+  animation: particleMove 5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 여러 개의 파티클로 궤적 만들기 */
+.particle-mover::before,
+.particle-mover::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #ff006e;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+}
+
+.particle-mover::before {
+  animation: particleMove 5s infinite cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+  opacity: 0.6;
+  filter: blur(2px);
+}
+
+.particle-mover::after {
+  animation: particleMove 5s infinite cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+  opacity: 0.3;
+  filter: blur(4px);
+}
+
+@keyframes particleMove {
+  0% {
+    transform: translate(100px, 200px);
+  }
+  25% {
+    transform: translate(500px, 100px);
+  }
+  50% {
+    transform: translate(400px, 300px);
+  }
+  75% {
+    transform: translate(200px, 150px);
+  }
+  100% {
+    transform: translate(100px, 200px);
+  }
+}
+</style>
+
+<div class="particle-container">
+  <div class="particle-mover"></div>
+</div>

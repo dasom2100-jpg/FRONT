@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>animation효과</title>
+    <style>
+        img:nth-of-type(2):hover {
+            -webkit-transform: -webkit-translate(-150px, -50px);
+            transform: translate(-150px, -50px);
+            /* transition : [대상-기본all] [진행시간-기본0s] [속도함수-기본ease] [지연시간-기본0s] ;  */
+            transition: 3s ease;
+            box-shadow: -10px 10px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        img:nth-of-type(4):hover {
+            /* -webkit-transform: -webkit-scale(0.8, 0.8);
+            transform: scale(0.8, 0.8); */
+            -webkit-transform: -webkit-scale(-0.8, -0.5);
+            transform: scale(-0.8, -0.5); 
+            transition: 0.5s ease;
+            box-shadow: -10px 10px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        img:nth-of-type(6):hover {
+            /* -webkit-transform: -webkit-rotate(-120deg);
+            transform: rotate(-120deg); */
+            /* -webkit-transform: -webkit-rotateZ(-120deg);
+            transform: rotateZ(-120deg); */
+            -webkit-transform: -webkit-rotate(360deg) -webkit-scale(0.5, 0.5);
+            transform: rotate(360deg) scale(0.5, 0.5);
+            /* -webkit-transform: -webkit-rotate(-40deg) -webkit-scale(0.5, 0.5);
+            transform: rotate(-40deg) scale(0.5, 0.5); */
+            transition: 1s ease-in;
+            box-shadow: -10px 10px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        img:nth-of-type(8):hover {
+            /* -webkit-transform: -webkit-rotateX(360deg);
+            transform: rotateX(360deg); */
+
+            /* -webkit-transform: -webkit-rotateY(360deg);
+            transform: rotateY(360deg); */
+
+            /* -webkit-transform: -webkit-rotateZ(360deg);
+            transform: rotateZ(360deg); */
+
+            transform: rotate3d(1, 1, 1, 45deg);
+            transition: 1s ease-in;
+        }
+
+        #depth1,
+        #depth2 {
+            float: left;    
+        }
+
+        #depth1>img:hover {
+            -webkit-transform: -webkit-rotateX(30deg);
+            transform: rotateX(30deg);
+            transition: 1s ease-in;
+        }
+
+        #depth2 {
+            perspective: 700px;
+            /* perspective-origin: left; */
+            perspective-origin: 50%;
+        }
+
+        #depth2>img:hover {
+            transform: rotateX(30deg);
+            transition: 1s ease-in;
+        }
+
+        .lastBox {
+            /* float: left;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            text-align: center;
+            margin: 50px 20px; */
+        }
+
+        .lastBox{
+            height : 50px;
+            background-color: red;
+        }
+
+        .lastBox:hover {
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+            transition: all 1s ease-in-out ;
+            /* transition-property: background-color, width; */
+            /* transition-duration: 5s; */
+            /* transition-timing-function: ease; */
+        }
+
+        .lastBox:hover+div {
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+            transition: all 1s ease-in-out ;
+            /* transition-property: background-color, width; */
+            /* transition-duration: 5s; */
+            /* transition-timing-function: ease-in-out; */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>The animation Property</h1>
+    <p>요소를 움직이는 애니메이션 효과를 준 예제입니다.</p>
+
+    <!-- <div>
+        <img src="./img/cute_dog.jpg">
+        <img src="./img/cute_dog.jpg"><br><br>
+
+        <img src="./img/cute_dog.jpg">
+        <img src="./img/cute_dog.jpg"><br><br>
+
+        <img src="./img/cute_dog.jpg">
+        <img src="./img/cute_dog.jpg"><br><br>
+
+        <img src="./img/cute_dog.jpg">
+        <img src="./img/cute_dog.jpg"><br><br>
+    </div>
+
+    <div id="depth1"><img src="./img/cute_dog.jpg"></div>
+    <div id="depth2"><img src="./img/cute_dog.jpg"></div>
+    <div style="clear:left;"></div> -->
+
+    <div class="lastBox">마지막 박스1</div>
+    <div class="lastBox">마지막 박스2</div>
+
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입 폼</title>
+    <style>
+        .error { color: red; font-size: 12px; }
+        .success { color: green; font-size: 12px; }
+        input.invalid { border: 2px solid red; }
+        input.valid { border: 2px solid green; }
+    </style>
+</head>
+<body>
+    <form id="signupForm">
+        <div>
+            <label>아이디:</label>
+            <input type="text" id="userId" name="userId">
+            <span id="userIdMsg"></span>
+        </div>
+        
+        <div>
+            <label>비밀번호:</label>
+            <input type="password" id="password" name="password">
+            <span id="passwordMsg"></span>
+        </div>
+        
+        <div>
+            <label>이메일:</label>
+            <input type="text" id="email" name="email">
+            <span id="emailMsg"></span>
+        </div>
+        
+        <div>
+            <label>전화번호:</label>
+            <input type="text" id="phone" name="phone">
+            <span id="phoneMsg"></span>
+        </div>
+        
+        <button type="submit">가입하기</button>
+    </form>
+
+    <script>
+        // 정규식 패턴 정의
+        const patterns = {
+            userId: /^[a-zA-Z][a-zA-Z0-9]{3,11}$/,
+            password: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+            email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+            phone: /^010-?\d{4}-?\d{4}$/
+        };
+
+        // 유효성 검사 메시지
+        const messages = {
+            userId: {
+                success: '사용 가능한 아이디입니다.',
+                error: '영문으로 시작, 4~12자 영문+숫자'
+            },
+            password: {
+                success: '안전한 비밀번호입니다.',
+                error: '8자 이상, 영문+숫자+특수문자 포함'
+            },
+            email: {
+                success: '올바른 이메일 형식입니다.',
+                error: '이메일 형식이 올바르지 않습니다.'
+            },
+            phone: {
+                success: '올바른 전화번호입니다.',
+                error: '010-1234-5678 형식으로 입력하세요.'
+            }
+        };
+
+        // 실시간 유효성 검사
+        function validateField(fieldId) {
+            const input = document.getElementById(fieldId);
+            const message = document.getElementById(fieldId + 'Msg');
+            const value = input.value.trim();
+
+            if (patterns[fieldId].test(value)) {
+                input.classList.remove('invalid');
+                input.classList.add('valid');
+                message.textContent = messages[fieldId].success;
+                message.className = 'success';
+                return true;
+            } else {
+                input.classList.remove('valid');
+                input.classList.add('invalid');
+                message.textContent = messages[fieldId].error;
+                message.className = 'error';
+                return false;
+            }
+        }
+
+        // 각 입력 필드에 이벤트 리스너 추가
+        ['userId', 'password', 'email', 'phone'].forEach(fieldId => {
+            document.getElementById(fieldId).addEventListener('blur', function() {
+                validateField(fieldId);
+            });
+        });
+
+        // 폼 제출 시 전체 유효성 검사
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const isUserIdValid = validateField('userId');
+            const isPasswordValid = validateField('password');
+            const isEmailValid = validateField('email');
+            const isPhoneValid = validateField('phone');
+
+            if (isUserIdValid && isPasswordValid && isEmailValid && isPhoneValid) {
+                alert('회원가입이 완료되었습니다!');
+                // 실제로는 서버로 데이터 전송
+            } else {
+                alert('입력 정보를 확인해주세요.');
+            }
+        });
+    </script>
+</body>
+</html>

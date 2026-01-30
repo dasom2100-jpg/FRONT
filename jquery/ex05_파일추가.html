@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/3.7.1/jquery.js"></script>
+    <style>
+        p {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #000;
+        }
+        .button-group {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #000;
+        }
+        button {
+            margin: 5px;
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <form name="frm" method="post" enctype="multipart/form-data">
+        <div id="fileContainer">
+            <p>
+                <input type="file" name="file" id="file0">
+            </p>
+        </div>
+        <div class="button-group">
+            <button type="button" id="fileadd">파일추가</button>
+            <button type="button" id="filedel">파일삭제</button>
+        </div>
+    </form>
+    <script>
+        $(function () {
+            // 파일추가 기능
+            $('#fileadd').on('click', function (e) {
+                e.preventDefault();
+                let fileCount = $('input[name="file"]').length;
+                let idx = fileCount;
+                
+                let newFile = $(`
+                    <p>
+                        <input type="file" name="file" id="file${idx}">
+                    </p>
+                `);
+                $('#fileContainer').append(newFile);
+            });
+
+            // 파일삭제 기능
+            $('#filedel').on('click', function (e) {
+                e.preventDefault();
+                let fileCount = $('input[name="file"]').length;
+                if (fileCount > 1) {
+                    $('#fileContainer > p').last().remove();
+                } else {
+                    alert("최소 1개의 파일 필드는 유지되어야 합니다.");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

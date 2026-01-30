@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            display: grid;
+            /* min-content : 내용이 가질 수 있는 최소한의 크기를 설정하는 키워드값 (안의 컨텐츠가 깨지지 않을만큼의 최소 크기를 말함)
+            형식 : minmax(최소값, 최대값)*/
+            grid-template-columns: minmax(min-content, 300px) minmax(200px, 1fr) 150px;
+            grid-gap: 5px;
+            box-sizing: border-box;
+            height: 200px;
+            width: 100%;
+            background-color: #8cffa0;
+            padding: 10px;
+        }
+
+        #container>div {
+            background-color: #8ca0ff;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div>항목의 너비는 콘텐츠만큼 넓지만 최대 300픽셀입니다.</div>
+        <div>항목의 너비는 유연하지만 최소 200픽셀입니다.</div>
+        <div>항목의 너비는 150픽셀이며 고정사이즈로 유연하지 않은 항목입니다.</div>
+    </div>
+</body>
+
+</html>

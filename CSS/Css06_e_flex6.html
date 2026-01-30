@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        [id^=optDiv] {
+            display: flex;
+            padding: 0;
+            list-style: none;
+            width: 800px;
+            height: 50px;
+            border: 1px solid #000;
+            margin: 20px auto;
+        }
+
+        [id^=optDiv]>.opt {
+            background: yellow;
+        }
+
+        /* flex-basis : 초기 아이템 크기 설정
+        플렉스 아이템의 초기 크기를 지정한다. box-sizing이 따로 설정되지 않은 경우에 콘텐츠의 박스 크기를 결정하게 된다.
+        flex-basis: auto;  => 디폴트값 = width(또는 height) 값을 사용 
+        flex-basis: 100px;
+        flex-basis: 30%;
+        flex-basis: 0;  => 콘텐츠 크기 무시, 오직 grow/shrink 비율로만 계산
+        */
+        #optDiv1>.opt:nth-child(2) {
+            background-color: green !important;
+            flex-basis: 300px;
+        }
+
+        #optDiv1>.opt:nth-child(4) {
+            background-color: hotpink !important;
+            flex-basis: 150px;
+        }
+
+        /* flex-grow : 남는 공간을 얼마만큼 가져가는지를 설정
+        부모 요소가 flexbox 일때, 그 안에 속한 flex 아이템들이 기본 크기 보다 더 커질수 있는지 결정하고, 
+        플렉스 박스 내부에서 할당 받을 수 있는 공간을 상대적으로 정의하는 속성임.
+        기본값: 0 (안 늘어남)
+        숫자는 비율
+        */
+        #optDiv2>.opt {
+            background: yellow;
+            flex-grow: 1;
+        }
+
+
+        #optDiv3>.opt:nth-child(2) {
+            background: green !important;
+            flex-grow: 1;
+        }
+
+        #optDiv3>.opt:nth-child(3) {
+            background: hotpink;
+            flex-grow: 2;
+        }
+
+        .opt:nth-of-type(2n) {
+            background-color: red !important;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="listContainer">
+        <h1>디폴트</h1>
+        <div id="optDiv0">
+            <div class="opt">거북이</div>
+            <div class="opt">호랑이</div>
+            <div class="opt">나비</div>
+            <div class="opt">청설모</div>
+            <div class="opt">뱀</div>
+            <div class="opt">고라니</div>
+        </div>
+
+        <h1>flex-basis</h1>
+        <div id="optDiv1">
+            <div class="opt">거북이</div>
+            <div class="opt">호랑이</div>
+            <div class="opt">나비</div>
+            <div class="opt">청설모</div>
+            <div class="opt">뱀</div>
+            <div class="opt">고라니</div>
+        </div>
+
+        <h1>flex-grow</h1>
+        <div id="optDiv2">
+            <div class="opt">거북이</div>
+            <div class="opt">호랑이</div>
+            <div class="opt">나비</div>
+            <div class="opt">청설모</div>
+            <div class="opt">뱀</div>
+            <div class="opt">고라니</div>
+        </div>
+
+        <div id="optDiv3">
+            <div class="opt">거북이</div>
+            <div class="opt">호랑이</div>
+            <div class="opt">나비</div>
+            <div class="opt">청설모</div>
+            <div class="opt">뱀</div>
+            <div class="opt">고라니</div>
+        </div>
+    </div>
+</body>
+
+</html>

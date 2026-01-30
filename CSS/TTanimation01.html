@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>animation효과</title>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      background: hotpink;
+      position: relative;
+      animation: mymove 10s linear 0s forwards;
+      /* animation:  mymove 10s linear 5s 1 backwards;  */
+      /* animation-direction:reverse;  */
+    }
+
+.trail-box::before,
+.trail-box::after {
+content: "";
+position: absolute;
+width: 100%;
+height: 100%;
+background-color: #3498db;
+border-radius: 50%;
+top: 0;
+left: 0;
+opacity: 0.5;
+}
+.trail-box::before {
+  animation: move 2s infinite ease-in-out 0.1s;
+      animation-fill-mode: both;
+}
+
+.trail-box::after {
+  animation: move 2s infinite ease-in-out 0.2s;
+  opacity: 0.3;
+}
+    /* @keyframes mymove {
+        from {left: 0px; top: 0px;}
+        to {left: 200px; top:200px; background: yellow;}
+      } */
+
+    @keyframes mymove {
+      0% { background: yellow; left: 0px; top: 0px; }
+
+      25% { background: black; left: 100px; top: 50px; }
+
+      50% { background: blue; left: 150px; top: 0px; }
+
+      75% { background: red; left: 250px; top: 50px; }
+
+      100% { background: green; left: 300px; top: 0px; }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>The animation Property</h1>
+  <p>요소를 움직이는 애니메이션 효과를 준 예제입니다.</p>
+  <div class="trail-box"></div>
+</body>
+
+</html>

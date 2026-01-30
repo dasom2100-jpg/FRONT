@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<style>
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #1e1e1e;
+  margin: 0;
+}
+
+.clip-box {
+  position: relative;
+  width: 300px;
+  height: 200px;
+}
+
+.clip-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 3px solid #00d9ff;
+  border-radius: 10px;
+  clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+  animation: revealBorder 2s ease-in-out forwards;
+}
+
+@keyframes revealBorder {
+  0% {
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+  50% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
+  }
+  75% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+</style>
+</head>
+<body>
+  <div class="clip-box"></div>
+</body>
+</html>

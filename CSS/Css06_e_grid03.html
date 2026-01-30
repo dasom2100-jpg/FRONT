@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #page {
+            display: grid;
+            width: 100%;
+            grid-template:
+                [header-left] "head head" 300px [header-right] 
+                [nav-left] "menu  main" 1fr [nav-right] 
+                [footer-left] "nav  foot" 100px [footer-right] / 300px 1fr;
+                /* [footer-left] "foot  foot" 100px [footer-right] / 300px 1fr; */
+        }
+
+        header {
+            background-color: lime;
+            grid-area: head;
+        }
+
+        nav {
+            background-color: lightblue;
+            grid-area: menu;
+        }
+
+        main {
+            background-color: yellow;
+            grid-area: main;
+        }
+
+        footer {
+            background-color: red;
+            grid-area: foot;
+        }
+
+        .dclass{
+            height : 300px;
+        }
+        .dclass:nth-of-type(even){
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page">
+        <header>Header</header>
+        <nav>Navigation</nav>
+        <main>
+            Main area<br>
+            <div class="dclass">1</div>
+            <div class="dclass">2</div>
+            <div class="dclass">3</div>
+            <div class="dclass">4</div>
+            <div class="dclass">5</div>
+            <div class="dclass">6</div>
+            <div class="dclass">7</div>
+            <div class="dclass">8</div>
+            <div class="dclass">9</div>
+            <div class="dclass">10</div>
+            <div class="dclass">11</div>
+            <div class="dclass">12</div>
+        </main>
+        <footer>Footer</footer>
+    </div>
+</body>
+
+</html>

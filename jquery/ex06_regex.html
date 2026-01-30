@@ -19,7 +19,7 @@
         }
 
         #joinForm>h1 {
-            font-family: '';
+            /*font-family: '';*/
             font-weight: 400;
             font-size: 16pt;
             text-align: left;
@@ -96,7 +96,7 @@
     <script>
         /*
         정규식(Regex)이란: 특정 규칙을 가진 문자 서식 형식을 의미함.
-        유효성 검사할 때 많이 사용되는 것이 정규식이다.
+        유효성 검사(validation)할 때 많이 사용되는 것이 정규식이다.
         리터럴표기법, 함수형내장객체의 생성자를 이용하는 방법등으로 정규식을 표현할 수 있다.
 
         참고사이트 : https://hamait.tistory.com/342
@@ -118,28 +118,45 @@
 
         정규식을 사용하는 함수 종류
         exec() : 문자열에서 일치하는 부분을 탐색하여, 일치하는 경우 배열값으로 반환, 일치하지 않는 경우 null 반환.
+        - 데이터의 정밀 탐색에 유용
         test() : 문자열에 일치하는 부분이 있는지 확인하여, 일치하면 true, 일치하지 않으면 false를 반환.
         search() : 문자열에서 일치하는 부분을 탐색하여, 일치하는 부분의 인덱스, 또는 일치가 없는 경우 -1을 반환.
+        - 데이터의 인덱스번호를 가져올 때 유용
         match() : 캡처 그룹을 포함해서 모든 일치를 담은 배열을 반환함. 일치하지 않는 경우 null을 반환.
+        - 데이터에 해당 문자열이 있는지를 확인하고자 할 때 유용
+        ** 캡쳐 그룹은 소괄호()로 인식을 한다.
         */
 
-        const regex1 =new RegExp('foo*', 'g');
-        // const regex1 =new RegExp('foo*', 'i');
-        const str1 = 'table football, foosball Foob';
-        // const str1 = 'table Football, Foosball Foob';
-        console.log("str1: ", str1);
-        console.log('exec함수 결과: ', regex1.exec(str1));
-        console.log('test 결과: ', regex1.test(str1));
-        console.log('=========================================');
-        
-        var str = "For more information, see Chapter 3.4.5.1";
-        var re = /see (chapter \d+(\.\d)*)/i; 
-        console.log("str: ", str);
-        var found = str.match(re);
-        console.log('match 결과(캡쳐): ', found);
-        console.log('test 결과(캡쳐): ', re.test(str));
-        console.log('=========================================');
+        // const regex1 =new RegExp('foo*', 'g');
+        const regex1 = new RegExp('foo*', 'i');
+        // const str1 = 'table football, foosball Foob';
+        const str1 = 'table Football, Foosball Foob';
+        // console.log("str1: ", str1);
+        // console.log('exec함수 결과: ', regex1.exec(str1));
+        // console.log('test 결과: ', regex1.test(str1));
+        // console.log('=========================================');
 
+        var str = "For more information, see Chapter 3.4.5.1";
+        /*
+        For more information, see Chapter 3.4.5.1
+        see (chapter \d+(\.\d)*) => see Chapter 3.4.5.1
+        (chapter \d+(\.\d)*)  => Chapter 3.4.5.1
+        \.\d => .1
+        */
+        // var re = /see (chapter \d+(\.\d)*)/i;
+        // console.log("str: ", str);
+        // var found = str.match(re);
+        // console.log('match 결과(캡쳐): ', found);
+        // console.log('test 결과(캡쳐): ', re.test(str));
+        // console.log('=========================================');
+
+        /*
+        For more information, see Chapter 3.4.5.1
+        see (chapter \d+(\.\d)*) => see Chapter 3.4.5.1
+        (chapter \d+(?:\.\d)*)  => Chapter 3.4.5.1
+        ?:\.\d => 캡처 제외
+        */
+        // ?: 해당 그룹을 캡처에서 제외한다는 의미
         // var re = /see (chapter \d+(?:\.\d)*)/i;
         // var found = str.match(re);
         // console.log('match 결과:(비캡쳐)', found);
@@ -157,9 +174,53 @@
 
         <input type="search" name="unm" id="unm" class="validIn" placeholder="이름 입력">
         <input type="text" name="ubirth" id="ubirth" class="validIn" placeholder="생년월일(예:20001122로 입력)">
-        <button type="button" name="uagency" id="uagency">통신사선택</button>
+        <div id="selDiv">
+            <button type="button" name="uagency" id="uagency">통신사선택</button>
+            <div id="downMenu">
+                <div class="otp">SKT</div>
+                <div class="otp">KTF</div>
+            </div>
+            <input type="hidden" name="uagencyInput" id="uagencyInput">
+        </div>
+        <style>
+            #selDiv {
+                position: relative;
+            }
 
+            #downMenu {
+                position : absolute;
+                top:51px;
+                left :1px;
+                background-color: #fff;
+                width: 95%;
+                border : 1px solid #000;
+            }
 
+            div.otp{
+                font-size: 18px;
+                padding : 5px 10px;
+                border-bottom: 1px solid #ccc;
+            }
+
+            div.otp:hover{
+                background-color : #777;
+                color :#fff;
+            }
+
+        </style>
+        <script>
+            $(function(){
+                $("#downMenu").hide();
+                $("#uagency").on("click", function(){
+                    $("#downMenu").show();
+                });
+
+                $("div.otp").on('click',function(){
+                    $("#downMenu").hide();
+                    $("#uagencyInput").val($(this).text());
+                });
+            });
+        </script>
 
         <input type="tel" name="utel" id="utel" class="validIn" placeholder="전화번호 입력">
 
@@ -167,7 +228,7 @@
     </div>
     <script>
         let uRegex, selectTarget, result = false;
-        let msgObj = {
+        let msgObj = { //msgObj.upwMsg = msgObj['upwMsg']
             uidMsg: '아이디는 영문자, 숫자, 특수문자(_)조합으로 6~20자 이내로 입력해주세요.',
             upwMsg: '비밀번호는 영문자, 숫자, 특수문자 조합으로 6~20자 이내로 입력해주세요.',
             unmMsg: '이름은 영문자, 한글, 공백문자만 사용하여 2~20자 이내로 입력해주세요',
@@ -176,16 +237,38 @@
             ubirthMsg: '생년월일은 8자리 숫자로 입력해주세요(예: 19901231)'
         };
 
+        //document.getElementById('joinBtn') => 
+        // <input type="button" id="joinBtn" value="회원 가입" tabindex="1">
         document.getElementById('joinBtn').addEventListener('click', validFnc);
+        /*
+         $('input').not('#joinBtn')
+        <input type="search" name="uid" id="uid" class="validIn" placeholder="아이디 입력" tabindex="1">
+        <input type="search" name="upw" id="upw" class="validIn" placeholder="비번 입력">
+        <input type="email" name="umail" id="umail" class="validIn" placeholder="이메일 입력">
+
+        <input type="search" name="unm" id="unm" class="validIn" placeholder="이름 입력">
+        <input type="text" name="ubirth" id="ubirth" class="validIn" placeholder="생년월일(예:20001122로 입력)">
+        <input type="tel" name="utel" id="utel" class="validIn" placeholder="전화번호 입력">
+        */
         $('input').not('#joinBtn').on('blur', validFnc);
 
         function validFnc() {
             let validInputs = document.querySelectorAll('.validIn');
+            /* 
+            document.querySelectorAll('.validIn') => validInputs
+            0: <input type="search" name="uid" id="uid" class="validIn" placeholder="아이디 입력" tabindex="1">
+            1: <input type="search" name="upw" id="upw" class="validIn" placeholder="비번 입력">
+            2: <input type="email" name="umail" id="umail" class="validIn" placeholder="이메일 입력">
+            3: <input type="search" name="unm" id="unm" class="validIn" placeholder="이름 입력">
+            4: <input type="text" name="ubirth" id="ubirth" class="validIn" placeholder="생년월일(예:20001122로 입력)">
+            5: <input type="tel" name="utel" id="utel" class="validIn" placeholder="전화번호 입력">
+            */
             validInputs.forEach(function (obj, idx) {
-
-                selectTarget = $(obj).attr('id');
-                selStr = 'red-' + selectTarget;
-                let objVal = obj.value;
+                //obj = <input type="search" name="uid" id="uid" class="validIn" placeholder="아이디 입력" tabindex="1"> => "abcd"
+                //idx = 0 
+                selectTarget = $(obj).attr('id'); //selectTarget = "uid" 
+                selStr = 'red-' + selectTarget; //selStr = 'red-uid'
+                let objVal = obj.value;  // objVal = "abcdef"
 
                 switch (selectTarget) {
                     // \w (영어소문자): 영문 대소문자 (a-z, A-Z), 숫자 (0-9), 밑줄(_) 문자만 가능
@@ -200,14 +283,24 @@
                     default: uRegex = /^(010)-\d{4}-\d{4}$/;
                 }
 
+                //uRegex = /^(\w){6,20}$/;  
+                // console.log('uRegex: ', uRegex);
+                // console.log('objVal: ', objVal);
+                // console.log('uRegex.test(objVal): ', uRegex.test(objVal));
 
                 if (!uRegex.test(objVal)) {
+                    //'.red-uid'
                     $('.red-' + selectTarget).remove();
+                    //<input type="search" name="uid" id="uid" class="validIn uid" placeholder="아이디 입력" tabindex="1">
+                    //msgObj['uidMsg']
+                    //<p class='red-uid' >'아이디는 영문자, 숫자, 특수문자(_)조합으로 6~20자 이내로 입력해주세요.'</p>
                     $('#' + selectTarget).addClass(selectTarget).after(`<p class='${selStr}' >${msgObj[selectTarget + 'Msg']}</p>`);
                     result = false;
                 } else {
-
+                    //#uid  uid
+                    //<input type="search" name="uid" id="uid" class="validIn" placeholder="아이디 입력" tabindex="1">
                     $('#' + selectTarget).removeClass(selectTarget);
+                    //#uid 
                     $('#' + selectTarget).next('p').remove();
                     result = true;
 
@@ -219,8 +312,12 @@
                 }
             });
 
-            //영어대문자, 특수문자포함여부
-            function _valSub(objVal) {
+            //영어대문자, 특수문자포함여부  
+            function _valSub(objVal) { //'abcdef'
+                //   /^[문자열패턴] => 해당 문자열패턴 중에서 시작
+                //   /[^문자열패턴] => 해당 문자열패턴 제외
+                // [^\w\s]/g =>_, 영어대소문자, 숫자, 공백문자 제외한 특수문자체크
+                // /[A-Z]/g => 영어대문자 체크
                 const regex = /[^\w\s]/g, regex1 = /[A-Z]/g;
                 if (objVal.search(regex) > -1 && objVal.search(regex1) > -1) return true;
                 else false;
@@ -230,7 +327,7 @@
                 if (result) alert('회원가입 성공');
             }
         }
-   </script>
+    </script>
 </body>
 
 </html>

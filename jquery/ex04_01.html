@@ -18,9 +18,7 @@
 				// 현재 페이지에 이미지 표시하도록 설정
 				// return false; 
 			});
-
-
-			$("#img-hidden").css({ display:'block', padding:'10px', borderRadius: '5px', cursor: 'pointer' }).click(function () {
+			$("#img-hidden").css({ display:'block', cursor: 'pointer' }).click(function () {
 				$("img").toggle();
 			});
 		});
@@ -28,8 +26,8 @@
 </head>
 <body>
 	<ul>
-		<li><a href="./img/cute_dog.jpg">사진1</a></li>
-		<li><a href="./img/img_girl.jpg">사진2</a></li>
+		<li><a href="https://picsum.photos/600/400">사진1</a></li>
+		<li><a href="https://picsum.photos/200">사진2</a></li>
 	</ul>
 	<div style="clear:both;"></div><br><br><hr>
 	<button id="img-hidden">사진 감추기</button>

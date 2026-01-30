@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>코딩연습</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        form>button.btn.btn-default { background-color: #0d3d5f; color: #fff }
+        form>button.btn.btn-default:hover { background-color: #5aafeb; color: #fff }
+        .form-group>input.form-control.inputElements { margin-top: 20px; }
+    </style>
+
+    <script>
+       window.onload = function () {
+            // 모든 input 요소 선택
+            let elements = document.querySelectorAll('input');
+            
+            elements.forEach(function(obj, i){
+                obj.addEventListener('blur', function(){
+                    console.log($(this).attr("id"));
+                    let idname = $(this).attr("id");
+
+                    let regx;
+                    switch(idname){
+                        case 'uid':
+                            // 아이디: 영문자로 시작, 4~20자
+                            regx = /^[a-zA-Z][\w\W]{3,19}$/;
+                            break;
+
+                        case 'upw':
+                            // 비밀번호: 영문자로 시작, 4~20자
+                            regx = /^[a-zA-Z][\w\W]{3,19}$/;
+                            break;
+
+                        default:
+                            console.log('필요할 때 추가 예정');
+                            return; // 정규식 없으면 종료
+                    }
+
+                    // 값 검증
+                    if(regx.test(this.value)){
+                        if(/\s+/.test(this.value)){
+                            console.log('공백 발생');
+                        } else {
+                            console.log('공백 없음');
+                        }
+                    } else {
+                        console.log('패턴 불일치');
+                    }
+                });
+            });
+        };
+    </script>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>회원가입</h2>
+        <form action="">
+            <div class="form-group">
+                <input type="text" class="form-control inputElements" id="uid" value="admin" placeholder="아이디" name="uid">
+                <p class="errMsg">아이디 에러메시지</p>
+                <input type="password" class="form-control inputElements" id="upw" value="1234" placeholder="비밀번호" name="upw">
+                <p class="errMsg">비번 에러메시지</p>
+            </div>
+            <button type="submit" class="btn btn-default form-control">제출</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

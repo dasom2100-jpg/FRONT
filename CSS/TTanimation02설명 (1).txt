@@ -1,0 +1,51 @@
+/*     
+transform속성 : 이미지의 변형을 설정하는 속성
+형식: transform : 변형함수;
+
+2차원 변형함수 종류            
+1. translateX(x), translateY(y) ,translate(x, y)   : 지정한 크기만큼 x축, y축으로 이동
+2. scaleX(x), scaleY(y), scale(x, y) : 지정한 크기만큼 x축, y축으로 확대/축소. 
+**1보다 작으면 축소, 1보다 크면 확대, 단위사용불가, 음수인 경우 이미지 뒤집힘 효과 발생
+
+3-1.rotate(각도값) :
+**각도값 : 0deg~360deg(양수,음수 가능, deg단위 생략 불가), 
+**음수인 경우 반시계방향 회전, 양수인 경우 시계방향 회전	
+
+3-2.rotateX(각도값) : 각도값(0~360deg), 단위deg지정(생략불가), 수직방향 기울임지정.
+3-3.rotateY(각도값) : 각도값(0~360deg), 단위deg지정(생략불가), 수평방향 기울임지정.
+3-4.rotateZ(각도값) : 각도값(0~360deg), 단위deg지정(생략불가), 시계,반시계방향 기울임지정.
+
+3-3.rotate3d(x축radian값, y축radian값, z축radian값, 회전각도값(deg))
+**단위 없이 숫자만 지정시는 radian값으로 인식 1 (대략 57.3deg) => 180deg/π(원주율)와 동일
+**회전각도값만 deg값으로, 나머지는 radian(래디안)값으로 지정가능. 래디안값은 단위 사용불가.
+
+transition : 변형되는 스타일의 대상(transition-property), 진행시간(transition-duration), 속도함수(transition-timing-function),  지연시간(transition-delay) 등을 설정할 수 있는 단축속성
+
+형식: transition : [대상-기본all] [진행시간-기본0s] [속도함수-기본ease] [지연시간-기본0s] ; 
+1. 대상 : all(해당 요소의 모든 style속성) | none(아무속성도 변경안됨) | 원하는 스타일속성 
+**속성이 여러 개인 경우 ,로 나열하여 지정 (단 단축속성인 경우 한 개의 속성값만 사용가능.)
+예: background-color, transform등  (만약 해당 요소가 블록레벨인 경우 heigth기본값은 auto(컨텐츠높이만큼)이므로, trasition에서 제대로 적용이되지 않는다. 따라서 height까지 적용하려면 반드시 해당 요소에 height값을 설정후 변경 height속성에 대해 trasition을 설정하는 것이 좋다.)
+2. 진행시간 : 시간값
+**시간을 s(second-초 단위) | ms(milliseconds-밀리초 단위) 예: 0.5s (0.5초 동안 진행)
+3. 속도함수 : 속도함수명
+- linear : 시작부터 끝까지 동일한 속도로 진행
+- ease(기본값) : 처음은 천천히 시작 점점 빨라지다가 마지막은 천천히 종료
+- ease-in : 시작만 천천히
+- ease-out : 마지막만 천천히
+- ease-in-out : 느리게 시작하고 느리게 종료
+
+perspective속성 : 원근감을 표현할 수 있는 속성. 
+형식: perspective : 값;
+**값은 픽셀크기로 지정. 단 변형함수의 부모 엘리먼트에 지정해야 한다.
+perspective-origin속성 : perspective의 보조옵션속성. 원근감의 위치의 축을 지정. 기본값(50%)
+형식 : perspective-origin : 값;
+** px단위값, 백분률값, left, right,center등의 지정고정값등으로 가능
+*/
+
+
+
+
+
+
+
+

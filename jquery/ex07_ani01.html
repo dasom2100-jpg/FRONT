@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>금괴</title>
+    <script src="http://code.jquery.com/jquery-3.7.0.js"></script>
+
+    <style>
+      /* 공통 */
+      #toastBox,
+      #modalBox,
+      #searchBox,
+      #scrollBox {
+        position: relative;
+        height: 300px;
+        border: 1px solid #333;
+        margin: 20px;
+        padding: 10px;
+      }
+
+      /* 1. toast */
+      .toast {
+        display: none;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        /*주의 : translateX(%)함수의 %값은 부모가 아닌 자기자신엘리먼트를 기준으로 잡음.*/
+        transform: translateX(-50%);
+        background: #333;
+        color: #fff;
+        width: 500px;
+        max-width: 100%;
+        border-radius: 6px;
+        text-align: center;
+        padding: 10px 20px;
+        
+      }
+
+      /* 2. modal */
+      #modalBg {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+      }
+      #modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 5px;
+        background-color: #fff;
+        padding: 50px;
+      }
+      #closeModal {
+        background-color: aqua;
+      }
+
+      /* 3. search */
+      #filterBox {
+        display: none;
+        margin-top: 10px;
+      }
+      #topBtn {
+        display: none;
+        position: fixed;
+        bottom: 30px;
+        right: 0;
+        width: 50px;
+        line-height: 50px;
+        border-radius: 50%;
+        border: none;
+        background-color: red;
+        color: #fff;
+      }
+    </style>
+
+    <script>
+      $(function () {
+        //1.toast
+        // $().on('click', function(){});
+        
+        $("#saveBtn").on("click", function () {
+          $("#toast").fadeIn(1000);
+
+          setTimeout(function () {
+            $("#toast").fadeOut(1000);
+          }, 2000);
+        });
+
+        // 2. modal
+        $("#openModal").click(function () {
+          $("#modalBg, #modal").fadeIn(600);
+        });
+
+        $("#closeModal, #modalBg").click(function () {
+          $("#modalBg, #modal").fadeOut(600);
+        });
+
+        // 3. scroll
+        $(window).on("scroll", function () {
+          if ($(this).scrollTop() > 400) {
+            $("#topBtn").fadeIn();
+          } else {
+            $("#topBtn").fadeOut();
+          }
+        });
+
+        // 4. top button click
+        $("#topBtn").click(function () {
+          $("html, body").animate({ scrollTop: 0 }, 600);
+        });
+
+        // 5. toggle filter
+        $("#toggleFilter").click(function () {
+          $("#filterBox").slideToggle();
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <!-- 1. Toast 알림 -->
+    <div id="toastBox">
+      <h1>알림 메시지 (Toast / Alert)</h1>
+      <p>저장 완료, 에러 안내 등에 사용됩니다.</p>
+      <button id="saveBtn">저장</button>
+
+      <div id="toast" class="toast">저장이 완료되었습니다.</div>
+    </div>
+
+    <!-- 2. 모달 창 -->
+    <div id="modalBox">
+      <h1>모달박스 만들기</h1>
+      <p>약관, 상세 설명, 이미지 확대 등에 사용됩니다.</p>
+      <button id="openModal">모달 열기</button>
+
+      <div id="modalBg">
+        <div id="modal">
+          <p>제이쿼리와 CSS를 이용한 모달창 만들기</p>
+          <button id="closeModal">닫기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. search -->
+    <div id="searchBox">
+      <h1>검색 조건 / 상세 필터 토글</h1>
+      <p>관리자 페이지, 쇼핑몰 필터</p>
+      <button id="toggleFilter">상세 검색</button>
+
+      <div id="filterBox">
+        <input type="search" placeholder="상품명" />
+        <input type="search" placeholder="카테고리" />
+      </div>
+    </div>
+
+    <!-- 4. scroll -->
+    <div id="scrollBox">
+      <h1>스크롤 시 "Top 버튼" 표시/승강</h1>
+      <p>
+        UX 개선으로 가장 많이 사용됨<br />
+        우측 하단부의 top버튼 확인하기<br />
+        마우스 스크롤을 이용하여 위,아래 페이지를 이동할 때의 top버튼 변화
+        확인<br />
+      </p>
+      <button id="topBtn">TOP</button>
+    </div>
+    <!-- br태그 50개 : br*50 -->
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </body>
+</html>
