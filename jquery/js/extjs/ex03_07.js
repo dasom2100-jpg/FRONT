@@ -20,8 +20,8 @@ $(function () {
     // const user = users.find(u => u.id === 2); 
     // console.log(user);
 
-    // $("#inner_1 > p").filter(".txt2").css({ "background-color": "aqua" }); //형제만 가능
-    $("#inner_1  p").filter(".txt2").css({ "background-color": "aqua" }); // 형제,형제의 자식,자손까지 가능
+//     $("#inner_1 > p").filter(".txt2").css({ "background-color": "aqua" }); //형제만 가능
+//     // $("#inner_1  p").filter(".txt2").css({ "background-color": "aqua" }); // 형제,형제의 자식,자손까지 가능
 
 //     // javascript filter함수
 //     // const numbers = [1, 2, 3, 4, 5, 6];

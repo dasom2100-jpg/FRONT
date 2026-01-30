@@ -1,42 +1,36 @@
-$(function(){
-    // nth-of-type() 예제
-    // let firstele = $('li:nth-of-type');
-    // console.log('firstele: ', firstele);
+$(function () {
+    // let firstele = $("li:first-of-type").css({ "background-color": "red" });
+    // // console.log('firstele: ', firstele);
+	// let lastele = $("li:last-of-type").css({ "background-color": "green" });
+    // // console.log('lastele: ', lastele);
 
-    // let lastele = $('li:nth-of-type');
-    // console.log('lastele: ', lastele);
+    // $("#menu li:nth-of-type(even)").css({ "background-color": "red" });
 
-    $('li:nth-of-type(even)').css('backgroundColor', "#ff0202");        
+    // $("#menu li:nth-of-type(odd)").css({ "background-color": "green" });
+    // //:even, :odd => 제이쿼리 탐색선택자(숫자 0부터=인덱스번호) 중 하나(인덱스기준)
+    // $("#menu li:even").css({ "background-color": "red" });
+    // $("#menu li:odd").css({ "background-color": "green" });
 
-    $('li:nth-of-type(odd)').css('backgroundColor', '#057c3d');
-    //:even, :odd =>  jQuery에서 제공하는 의사 클래스 선택자(인덱스기준 짝수, 홀수)
-    $('li:even').css('background-color', 'red');
-    $('li:odd').css('background-color', 'blue');
+    // eq(인덱스번호(0부터)) : 인덱스번호에 해당되는 요소 선택  
+    // $("#menu1 li").eq(2).css({ "background-color": "yellow" , "color": "#fff"});
+    // $("#menu1 li:eq(2)").css({ "background-color": "red" });
 
-    //eq(): 특정 인덱스 요소 선택자
-    let eqele = $('li').eq(3);
-    console.log('eqele: ', eqele);
-    eqele.css({
-        'background-color':'purple',
-        'color':'#fff',
-        'fontWeight':'bold'
-    });
+    // lt(인덱스번호) : 인덱스 번호보다 작은, 전 요소 모두 선택(자신 제외)
+    // $("#menu1 li:lt(2)").css({ "background-color": "aqua" });
 
-    //gt(인텍스번호 0부터): 특정 인덱스 초과 요소 선택자
-    $('#menu li:gt(2)').css('backgroundColor', 'orange');
+    // // gt(인덱스번호) : 인덱스 번호보다 큰, 후 요소 모두 선택(자신 제외)
+    // $("#menu1 li:gt(2)").css({ "background-color": "hotpink" });
 
-    //lt(인덱스번호 0부터): 특정 인덱스 미만 요소 선택자
-    $('#menu li:lt(2)').css('backgroundColor', 'pink'); 
+    // nth-child(번호n) , nth-of-type(번호n) : 번호는 1부터. 번호에 해당되는 요소를 선택함. 
+    // 인덱스는 맨 처음 요소를 0부터 세지만, 번호는 맨 처음 요소를 1부터 셈.
+    // n은 인덱스와 동일하게 0부터 셈. 0부터 1씩 증가하는 증가값 변수임.
+    // nth-child : 정방향(위-> 아래로)
+    // nth-last-child : 역방향(아래 -> 위로)
+    // $("#menu1 li:nth-child(1)").css({ "background-color": "yellow" });
 
-    //nth-child(n), nth-of-type(n) 비교
-    //nth-child(): 부모 요소의 자식 요소 중에서 n번째 요소 선택자.
-    //nth-of-type(): 부모 요소의 자식 요소 중에서 n번째 같은 타입(태그명) 요소 선택자.
-    $('#nthchilde_wrap li:nth-child(3)').css('border', '2px solid red');
-    $('#nthchilde_wrap li:nth-of-type(3)').css('border', '2px solid blue');
+    // $("#menu1 li:nth-child(2n)").css({ "border": "2px dashed red" });
+    // $("#menu1 li:nth-last-child(2)").css({ "background-color": "aqua" });
 
-    //nth-childe(): 정방향(위->아래로)
-    //nth-last-child(): 역방향(아래->위로)
-    $('#nthchilde_wrap2 li:nth-last-child(2)').css('backgroundColor', 'lightgreen');    
-        
-
-});
+    // $("li:nth-child(2n)").css({ "border": "2px dashed red" });
+    $("li:nth-last-child(2)").css({ "background-color": "aqua" });
+}); 

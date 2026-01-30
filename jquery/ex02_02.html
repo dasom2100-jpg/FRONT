@@ -4,9 +4,28 @@
 <head>
    <meta charset="UTF-8">
    <title>셀렉터</title>
+<!--
+파일을 import하는 순서
+1. 웹에서 가져오는 외부 CSS파일 => link태그사용
+2. 내가 만든 외부 CSS파일 => link태그사용
+3. 내가 작성한 내부 CSS스타일(style태그 사용) => 5번 외부 스크립트 기술 후에 기술해도 괜찮음.
+4. 웹에서 가져오는 외부 스크립트 파일(예: jquery라이브러리) => script태그에 src속성 사용
+5. 내가 만든 외부 스크립트 파일(예: ex02_02.js) => script태그에 src속성 사용
+6. 내가 작성한 내부 스크립트(script태그 사용)
+7. 인라인스타일시트, 인라인 스크립트
+
+** 스크립트보다 스타일이 컴파일 속도가 빠르므로 속도가 빠른 것을 먼저 기술
+** 외부에서 가져오는 파일은 참고하는 라이브러리 먼저, 내가 작성한 파일을 나중에 기술
+** 되도록이면 인라인은 권장하지 않으나 부득이한 경우(우선순위를 높이거나 이벤트를 직접적으로 기술해야 하는경우)만 사용하도록 권장
+** 내부스크립트, 내부 스타일등 내가 작성한 것이 외부보다 더 아래에 기술되도록 할 것(우선순위가 같은 경우 덮어쓰기가 되도록 하기 위해)
+-->
    <style>
-      em { font-size: 12pt; line-height: 60px; }
-      /* h2 {background-color: yellow !important; } */
+      em {
+         font-size: 12pt;
+         line-height: 60px;
+      }
+
+      h1.tit {background-color: lightgreen !important; }
    </style>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
    <script src="js/extjs/ex02_02.js"></script>
@@ -25,7 +44,7 @@
    <h4>선택자</h4>
    <h3 id="tit3">그룹 선택자</h3>
    <h3>인접 선택자</h3>
-   <h4 class="tit">종속 선택자</h4>
+   <h1 class="tit">종속 선택자</h1>
    <h3 class="tit">직접 선택자</h3>
 
 </body>

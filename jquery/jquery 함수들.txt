@@ -1,0 +1,50 @@
+jquery 함수
+text() : 값자리의 innerText
+text("문자열 값") : 공간자리의 innerText
+
+html() : 값자리의 innerHTML
+html("문자열 값") : 공간자리의 innerHTML
+
+val() : 값자리의 value
+val("문자열 값") : 공간자리의 value
+
+//정적속성
+attr("속성명") : getAttribute("속성명");
+attr("속성명", "속성값") : setAttribute("속성명", "속성값");
+
+//동적속성
+prop("속성명") : getAttribute("속성명");
+prop("속성명", "속성값") : setAttribute("속성명", "속성값");
+
+//style.display = 'none' => display : none
+hide( )
+
+//style.visibility = 'visiable' => visibility : visiable
+show( )
+
+//forEach(function( element, index ){ }); 와 유사. 단 index와 element의 인자 순서가 다름
+$("선택자" 또는 반복가능한객체).each(function(index, element){ ... });
+$.each($("선택자" 또는 반복가능한객체), function(index, element){ ... });
+
+// js 객체명.remove( ) 동일
+remove( ) : 해당 요소 제거
+
+// js node형식객체.removeChild( 삭제할 객체 )
+empty( ) : 해당 요소의 하위 요소(자식)를 모두 제거
+
+//js appendChild( 추가할 객체명=노드기준 ) , append( 추가할 객체명=노드기준 또는 문자열값 ) 
+append(추가할 요소) : 해당 요소의 가장 마지막 하위(자식) 요소로 추가
+
+// js의 removeAttribute("속성명")과 동일
+removeAttr("속성명") : 해당 속성명과 속성값을 모두 삭제
+
+//이벤트핸들러 함수들
+// js onclick = function () { } 과 동일
+// js addEventListener('click', function ( [이벤트내장객체 변수] ) { } )  과 동일
+1. click(function( [이벤트내장객체 변수] ){   })  : 해당 요소를 클릭했을 때 실행
+
+
+
+
+
+

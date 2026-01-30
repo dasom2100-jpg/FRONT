@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>값</title>
+    <style>
+        .ptxt {
+            display: none;
+            background-color: yellow;
+        }
+
+        .ipBox {
+            box-sizing: border-box;
+            width: 500px;
+            max-width: 90%;
+            height: 50px;
+            font-size: 16px;
+            padding-left: 10px;
+        }
+    </style>
+    <!-- 네트워크 방식으로 연결 -->
+      <script src="http://code.jquery.com/jquery-3.7.1.js"></script>
+    <!-- js/extjs/ex04_03.js 파일 연결 -->
+
+<script >
+    $(function(){
+$(".a1").hover(
+    function () { $('.txt1').show(); },
+    function () { $('.txt1').hide(); }
+);
+
+/*
+함수 호출 형식
+on
+1. 한 개의 이벤트만 적용: on("이벤트속성자", 콜백함수);
+2. 여러 개의 이벤트를 적용:
+on({
+    "이벤트속성자1": 콜백함수1,
+    "이벤트속성자2": 콜백함수2,
+    ...
+});
+3. 여러 개의 이벤트에 한 개의 기능을 적용
+**이벤트 종류 기술하는 경우 공백으로 띄어서 기술해준다.
+on("이벤트속성자1 이벤트속성자2 ...", 콜백함수);
+*/
+
+
+  
+$('.a1').on({
+    "mouseover": function () { $('.txt1').show(); },
+    "mouseleave": function () { $('.txt1').hide(); }
+});
+
+$('.a2').on("click", function () {
+    event.preventDefault();
+    $('.txt2').show();
+});
+
+
+$('.btn1').on({
+    "mousedown mouseleave": function () {
+        $('.txt3').show();
+    },
+    "mouseup": function () {
+        $('.txt3').hide();
+    }
+});
+
+$(".btn1").on("dblclick", function () {
+    $(".txt3").css({ "background-color": "#0f0" });
+});
+
+$('#ipBox').keyup(function (e) {
+    e.stopPropagation();
+    code = e.keyCode;
+    console.log('code1: ', code);
+    $('#ipText').text(this.value);
+});
+
+document.querySelector('#ipBox').addEventListener(
+    'keydown', function (e) {
+        code = e.keyCode;
+        console.log('333_code: ', code);
+        $('#ipText').text(this.value);
+    });
+
+$('#frm').on('submit', function (e) {
+    if (code == 13) e.preventDefault();
+});
+
+$('#ipBox').keydown(function () {
+    $('#ipText').text(this.value);
+});
+
+// change가 적용되는 시점은 blur 시점임.
+$('#ipBox').change(function () {
+    $('#ipText').text(this.value);
+});
+
+document.addEventListener('keydown',
+    function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            alert('엔터로 submit 실행 금지');
+        }
+    },
+    true
+);
+
+});
+
+
+    </script>
+</head>
+
+<body>
+    <div id="notabindex">
+        <p><a href="https://www.naver.com/" class="a1">a1 네이버</a></p>
+        <p class="txt1 ptxt">txt1 내용1</p>
+
+        <p><a href="https://www.daum.net/" class="a2" target="_blank">a2 다음</a></p>
+        <p class="txt2 ptxt">txt2 내용2</p>
+
+        <p><button class="btn1">btn1버튼</button></p>
+        <p class="txt3" style="display:none;">txt3 내용3</p>
+        <br><br>
+
+        입력 내용 : <span id="ipText"></span><br><br>
+        <form name='frm' id='frm' action="ex04_03_get.html">
+            <input type="search" name="searchkeyword" class="ipBox" id="ipBox" placeholder="테스트입력창"><br>
+            <input type="submit" class="ipBox" value="검색하기">
+        </form>
+    </div>
+    <!-- <div id="tabindex">
+        <p><a href="https://www.naver.com/" class="a1" tabindex="3">a1 네이버</a></p>
+        <p class="txt1 ptxt">txt1 내용1</p>
+
+        <p><a href="https://www.daum.net/" class="a2" target="_blank" tabindex="4">a2 다음</a></p>
+        <p class="txt2 ptxt">txt2 내용2</p>
+
+        <p><button class="btn1" tabindex="5">btn1버튼</button></p>
+        <p class="txt3" style="display:none;">txt3 내용3</p>
+        <br><br>
+
+        입력 내용 : <span id="ipText"></span><br><br>
+        <form name='frm' id='frm' action="ex04_03_get.html">
+            <input type="search" name="searchkeyword" class="ipBox" id="ipBox" placeholder="테스트입력창" tabindex="1"><br>
+            <input type="submit" class="ipBox" value="검색하기" tabindex="2">
+        </form>
+    </div> -->
+    <br><br><br><br><br><br><br><br><br><br><br>
+
+</body>
+
+</html>

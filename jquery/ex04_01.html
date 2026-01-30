@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>이벤트</title>
+	<script src="http://code.jquery.com/jquery-3.7.1.js"></script>
+	<style>
+		ul { float: left; margin: 30px; }
+	</style>
+	<script>
+		// $(  function(){}  );
+
+		$(function () {
+			$('a').click(function (e) {
+				e.preventDefault(); // preventDefault() : 이벤트를 발생시킨 객체의 기본 이벤트를 차단
+				$("img").attr("src", $(this).attr("href")).css({ width: '500px',  borderRadius: '10px', padding: '10px',position: 'absolute', top: '19%', left: '40%', transform: 'translate(-20%, -20%)' });
+				// 현재 페이지에 이미지 표시하도록 설정
+				// return false; 
+			});
+
+
+			$("#img-hidden").css({ display:'block', padding:'10px', borderRadius: '5px', cursor: 'pointer' }).click(function () {
+				$("img").toggle();
+			});
+		});
+	</script>
+</head>
+<body>
+	<ul>
+		<li><a href="./img/cute_dog.jpg">사진1</a></li>
+		<li><a href="./img/img_girl.jpg">사진2</a></li>
+	</ul>
+	<div style="clear:both;"></div><br><br><hr>
+	<button id="img-hidden">사진 감추기</button>
+	<img>
+
+	
+</body></html>
